@@ -102,8 +102,113 @@
 \maketitle
 
 
+
+
+% INTRODUCCIÓN
 \section{Introducción: \textit{Enfoque de la presentación}}
 
-La presentación tiene como fin mostrar a los oyentes este veterano, y a la vez moderno lenguaje de programación desde un punto de vista diferente al que generalmente se acostumbra. Es nuestro objetivo el dar a conocer las fortalezas y debilidades de éste fijando la perspectiva de la presentación en las aplicaciones cotidiantas del lenguaje en el desarrollo de proyectos profesionales. Es decir, sin quitar importancia a tópicos importantes como la sintaxis, nos focalizaremos en detallar aquellas caracteristicas que hacen de Ruby un lenguaje interesante y ávido de nuevos conceptos.
+La presentación, como así también el presente informe, tienen como fin mostrar a los oyentes este veterano, y a la vez moderno lenguaje de programación desde un punto de vista diferente al que generalmente se acostumbra. Es nuestro objetivo el dar a conocer las fortalezas y debilidades de éste fijando la perspectiva de la presentación en las aplicaciones cotidiantas del lenguaje en el desarrollo de proyectos profesionales. Es decir, sin quitar importancia a tópicos importantes como la sintaxis, nos focalizaremos en detallar aquellas caracteristicas que hacen de Ruby un lenguaje interesante y ávido de nuevos conceptos.
+
+
+
+
+% Un poco de historia
+\section{Un poco de historia}
+
+Ruby fue creado por \textit{Yukihiro ``Matz'' Matsumoto}. Matz comenzó a trabajar en Ruby en 1993, cuando tenia 28 años, mientras trabajaba para una empresa Open source (netlab.jp). Ya por ese entonces era muy conocido en Japón por tener un alto perfil de evangelista dentro de la comunidad Open source y por trabajar en varios productos Open source. Ruby es el primer software japones altamente conocido fuera de Japón, el cual fue presentado en 1995.
+
+\begin{quotation}
+\em``En 1993, yo estaba hablando con un colega acerca de lenguajes de scripting. Estaba muy impresionado por su poder y sus posibilidades. Sentía que el scripting era el camino a seguir.
+	\par
+	Me pareció que la programación orientada a objetos (POO) era muy adecuada para secuencias de comandos también (como viejo fan de la POO). Luego miré alrededor de la red. Me encontré con que Perl 5, que no se había lanzado todavía, implementaría las características de OO, pero  finalmente no resultó lo que esperába. Me di por vencido en creer en Perl como lenguaje de scripts orientado a objetos.
+	\par
+	Entonces me encontré con Python. Se trataba de un interprete y un lenguaje orientado a objetos. Pero no lo sentía como si fuera un "script" del lenguaje. Además, se trataba de un lenguaje híbrido de la programación de procedural y la programación orientada a objetos.
+	\par
+	Yo quería un lenguaje que fuera más poderoso que Perl, y más orientado a objetos que Python. Es por eso que me decidí a diseñar mi propio Lenguaje de programación''
+\begin{flushright} Yukihiro Matsumoto (a.k.a. “Matz”)\end{flushright}
+\end{quotation}  
+
+Es así que comenzó a desarrollarlo el 24 de febrero de 1993 y en agosto desarrollo el primer Hello World con ruby. En 1994 se lanzó la primer versión alpha. Matz trabajó solo hasta el año 1996, momento en el cuál se formo la primer comunidad de Ruby.
+
+
+
+
+% ¿QUE ES RUBY?
+\section{¿Qué es Ruby?}
+
+	Es un lenguaje escrito en C y fue diseñado teniendo en mente las capacidades de perl y phyton. [ Colocar contenido aquí ]
+
+
+
+
+% EL LENGUAJE Y SUS PRINCIPIOS
+\section{El lenguaje y sus Principios}
+	
+	Antes de iniciarnos en la sintaxis del lenguaje creemos necesario entender el por qué es que fue creado Ruby, es decir, entender el impacto que su creador deseaba que tuviera y las razones por las cuales conforma una forma muy particular de realizar aplicaciones.
+	\par
+	El lenguaje de programación Ruby es un ``\emph{lenguaje de programación interpretado para una rápida y fácil programación orientada a objetos}'' - Pero, ¿Qué significa esto? Veámos:
+\bigskip\\
+
+\textbf{Lenguaje de programación interpretado:}
+\begin{itemize}
+	\itemsep=1pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
+	\item habilidad para hacer llamadas directas al sistema operativo
+	\item poderozo manejo y operaciones con cadenas y expresiones regulares
+	\item respuestas inmediatas durante el desarrollo
+\end{itemize}
+\medskip
+
+\textbf{Rápido y fácil:}
+\begin{itemize}
+\itemsep=2pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
+	\item innecesarias las declaraciones de variables
+	\item variables no tipadas
+	\item syntaxis simple y consistente
+	\item el manejo de memoria es automático
+\end{itemize}
+\medskip
+
+\textbf{Programación orientada a objetos:}
+\begin{itemize}
+\itemsep=2pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
+	\item todo es un objeto (como SmallTalk)
+	\item clases, métodos, herencia, etc.
+	\item métodos singleton (métodos que pertenecen a un sólo objeto)
+	\item funcionalidad ``mixin'' por módulo
+	\item iteradores y clausuras
+\end{itemize}
+\medskip
+
+\textbf{Además:}
+\begin{itemize}
+\itemsep=2pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
+	\item números enteros de múltiple precisión
+	\item procesamiento de excepciones
+	\item carga dinámica
+	\item soporte de concurrencia
+\end{itemize}
+\bigskip\bigskip
+
+Sin duda, Ruby fue diseñado para hacer a los programadores mas productivos y felices. Esto es lo que el creador de Ruby nos dice:
+
+\begin{quotation}
+\em``Para mí, el propósito de la vida es, al menos en parte, tener alegría. Los programadores a menudo sienten alegría cuando se pueden concentrar en el aspecto creativo de la programación, por lo que Ruby está diseñado para que los programadores sean felices. Considero a un lenguaje de programación como una interfaz de usuario, por lo que deben seguir los principios de la interfaz de usuario.''
+
+\begin{flushright} Yukihiro Matsumoto (a.k.a. “Matz”), 2000 \end{flushright}
+\end{quotation}
+
+\bigskip
+¿Cuáles son los principios de una buena interfaz de usuario? Estos son los tres principios con citas de apoyo por parte de Matz:\\
+
+\begin{quotation}
+\noindent \textbf{Principio de concisión:} \em ``Quiero que las computadoras sean mis siervos, no mis maestros. Por lo tanto, me gustaría darles órdenes rápidamente. Un buen siervo debe hacer un montón de trabajo con una breve orden.''\\
+
+\noindent \textbf{Principio de consistencia:} \em``... un pequeño conjunto de normas cubre la totalidad del lenguaje Ruby. Ruby es un lenguaje relativamente sencillo, pero no es demasiado simple. He tratado de seguir el principio de \textit{sin sorpresas}. Ruby no es demasiado único, por lo que un programador con conocimientos básicos de otros lenguajes de programación puede aprender muy rápidamente.''\\
+
+\noindent \textbf{Principio de flexibilidad:} \em``Porque las lenguas son para expresar el pensamiento, una lengua no debe restringir el pensamiento humano, sino que debe ayudarlo. Ruby consiste en un núcleo pequeño inmutable (es decir, sintaxis) y bibliotecas arbitrarias de clases extensibles...''
+\end{quotation}
+
+
+
 
 \end{document}
