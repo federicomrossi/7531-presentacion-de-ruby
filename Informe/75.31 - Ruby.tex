@@ -59,7 +59,7 @@
 	extendedchars = true,
 	frame = lines,
 	keywordstyle = \color{keywords_blue}\bfseries,
-	language = Octave,                       
+	language = Ruby,                       
 	numbers = left,
 	numbersep = 5pt,
 	numberstyle = \tiny\ttfamily\color{gray50},
@@ -214,9 +214,18 @@ Sin duda, Ruby fue diseñado para hacer a los programadores mas productivos y fe
 % SINTAXIS
 \section{Sintaxis}
 
-	[ Colocar contenido aquí ]
+	Ha llegado el momento de conocer la sintaxis de Ruby. El lector será capaz de notar una simpleza extrema de esta, lo que no significa una deficiencia en su potencial. Es decir, veremos que a partir de un número muy acotado de lineas de código seremos capaces de realizar programas realmente interesantes.
 
 
+\subsection{Métodos Singleton}
+
+	El comportamiento de una instancia es determinado por su clase, pero hay momentos en los que es necesario que una instancia en particular posea un comportamiento especial. En la mayoría de los lenguajes deberíamos adentrarnos en la problematica de definir una nueva clase, la cual será instanciada una sola vez. En cambio, Ruby permite dar a cualquier objeto sus propios métodos.
+
+% Código
+\lstinputlisting[label=code:code1,caption="Métodos Singleton ejecutado en la consola"]{codes/code1.consola} 
+\bigskip
+
+	En el \refcode{code:code1}, las instancias \textit{test1} y \textit{test2} pertenecen a la misma clase, pero en \textit{test2} se ha redefinido el método \textit{size} por lo que se comportará de forma diferente. Un método que pertenece sólo a un único objeto se denomina \textit{Método Singleton}
 
 
 % MANEJO DE MEMORIA

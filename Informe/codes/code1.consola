@@ -1,0 +1,18 @@
+ruby> class SingletonTest
+    |   def size
+    |     25
+    |   end
+    | end
+   nil
+ruby> test1 = SingletonTest.new
+   #<SingletonTest:0xbc468>
+ruby> test2 = SingletonTest.new
+   #<SingletonTest:0xbae20>
+ruby> def test2.size
+    |    10
+    | end
+   nil
+ruby> test1.size
+   25
+ruby> test2.size
+   10
