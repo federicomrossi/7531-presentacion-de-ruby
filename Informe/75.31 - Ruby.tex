@@ -356,21 +356,21 @@ Un objeto procedimiento nuevo se obtiene utilizando Proc. Se pueden utilizar pro
 \bigskip
 
 % Código
-\lstinputlisting[label=code:sintaxis_bloques&proc_02,caption="Proc anónimos"]{codes/sintaxis_bloques&proc_03.txt} 
+\lstinputlisting[label=code:sintaxis_bloques&proc_03,caption="Proc anónimos"]{codes/sintaxis_bloques&proc_03.txt} 
 \bigskip
 
 % Código
-\lstinputlisting[label=code:sintaxis_bloques&proc_02,caption="Proc y Bloques"]{codes/sintaxis_bloques&proc_04.txt} 
+\lstinputlisting[label=code:sintaxis_bloques&proc_04,caption="Proc y Bloques"]{codes/sintaxis_bloques&proc_04.txt} 
 \bigskip
 
 % Código
-\lstinputlisting[label=code:sintaxis_bloques&proc_02,caption="Func lambda"]{codes/sintaxis_bloques&proc_05.txt} 
+\lstinputlisting[label=code:sintaxis_bloques&proc_05,caption="Func lambda"]{codes/sintaxis_bloques&proc_05.txt} 
 \bigskip
 
 \subsection{Estructura de control}
 
 % Código
-\lstinputlisting[label=code:sintaxis_bloques&proc_02,caption="Estructuras de control"]{codes/sintaxis_estructuracontrol_01.rb}
+\lstinputlisting[label=code:sintaxis_estructuracontrol_01,caption="Estructuras de control"]{codes/sintaxis_estructuracontrol_01.rb}
 \bigskip
 
 \subsection{Convención de nombres}
@@ -389,13 +389,48 @@ Los nombres de métodos que finalizan con un signo de interrogación (?, pronunc
 
 	En el \refcode{code:code1}, las instancias \textit{test1} y \textit{test2} pertenecen a la misma clase, pero en \textit{test2} se ha redefinido el método \textit{size} por lo que se comportará de forma diferente. Un método que pertenece sólo a un único objeto se denomina \textit{Método Singleton}.
 
+%MULTITHREADING
+\section{Multithreading}
+
+Los threads en ruby estan implementados completamente en el interprete de Ruby, esto lo hace portable puesto que no hay dependencia del sistema operativo, pero en contra parte con esto no se obtienen los beneficios de trabajar con threads nativos y por lo tanto se pueden experimentar problemas de innanición (starvation) al utilizar threads en Ruby, asi como en el caso en que se produsca un deadlock en los thread se podria suspender todo el proceso. Tambien en el caso en que un thread que esta en ejecución realiza una llamada a sistema que toma mucho tiempo, hasta que el interprete no tenga nuevamente el control no habria multithreading.
+El siguiente codigo muestra como se utilizan thread para manejar cada transaccion HTTP para descargar un conjunto de paginas.
+
+% Código
+\lstinputlisting[label=code:multithreading_01,caption="Multithreading"]{codes/multithreading_01.rb} 
+\bigskip
+
+Analizando las sutilezas que esconde el codigo podemos decir que los threads son creados haciendo la llamada Thread.new. Esta recibe un bloque que contiene el código que sera ejecutado por el thread. En este caso el bloque utiliza la libreria net/http.
+Cuando creamos un thread, estamos pasando la pagina web requerida como parametro. Luego este parametro es pasado dentro del bloque como myPage.
+
+\subsection{Manipulando threads}
+
+En el codigo anterior vemos que un metodo que se invoca de cada thread es join. Cuando un programa en Ruby termina, se matan todos los threads sin tener en cuenta su estado. Join sirve para esperar que termine su ejecución un thread particular, de esta forma el codigo que vimos se asegura que terminen los 3 threads que se lanzaron.
+Ademas de join hay otros metodos, como por ejemplo Thread.current obitiene el thread actual. Para obtener una lista de todos los threads en ejecucion o parados se ejecuta Thread.list. Para saber el estado de un thread se puede ejecutar thread.status o thread.alive?.
+
+
+\subsection{Variables de threads}
+Un thread puede acceder a cualquier variable que se encuentre en el alcance donde fue creado. Variables locales del thread (dentro del alcance del bloque de ejecucion del thread) no son compartidas por otros threads. Se puede utilizar a los thread como hash donde se puedan almacenar variables locales a cada thread y ser accedidas desde el el thread principal.
+
+% Código
+\lstinputlisting[label=code:multithreading_02,caption="Variables de threads"]{codes/multithreading_02.txt} 
+\bigskip
+
+\subsection{Semáforos}
+
+Para controlar el acceso a los recursos compartidos por varios thread (exclusión mutua), ruby implementa en el core los semaforos en la clase Mutex. En las imagenes siguientes se ven la sintaxis y posteriormente un ejemplo de uso.
+
+% Código
+\lstinputlisting[label=code:multithreading_03,caption="Uso de mutex"]{codes/multithreading_03.txt} 
+\bigskip
+
+% Código
+\lstinputlisting[label=code:multithreading_04,caption="Ejemplo utilizando mutex"]{codes/multithreading_04.rb} 
+\bigskip
 
 % MANEJO DE MEMORIA
 \section{Manejo de memoria}
 
 	[ Colocar contenido aquí ]
-
-
 
 
 % RECOLECCIÓN DE BASURA
