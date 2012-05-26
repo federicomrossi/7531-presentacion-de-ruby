@@ -1,0 +1,21 @@
+#Procs y Bloques
+def make_signal_handler(signal)
+  Proc.new{|handler| trap(signal, handler) } 
+end
+
+SIGINThandlerMaker = make_signal_handler("SIGINT")
+SIGINThandlerMaker.call(inthandler)
+
+#Funciones que devuelven funciones
+def make_filter(predicate)
+  lambda do |list|
+    new_list = []
+    list.each do |element|
+      new_list << element if predicate.call(element)
+    end
+    new_list
+  end
+end
+
+filter_odds = make_filter( lambda{|i| i % 2 != 0} )
+filter_odds.call(list) 

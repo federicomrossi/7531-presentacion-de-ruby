@@ -1,0 +1,16 @@
+#Tamano variable en la lista de parametros
+def print_relation(relation, *names)
+puts "My #{relation} include: #{names.join(', ')}."
+end
+print_relation("cousins", "Morgan", "Miles", "Lindsey")
+
+#Se pueden omitir los parametros
+puts "Look ma! No parentheses!"
+
+#Permite recursividad
+def sum_integers(a, b)
+  return 0 if a > b
+  a + sum_integers((a + 1), b)
+end
+
+sum_integers(1, 10) #51 Hace la progresion de sumas en el rango dado

@@ -1,0 +1,7 @@
+#Expresion de evaluacion
+apellido="Matzumoto"
+nombre="Japones"
+"#{apellido} #{nombre}"
+
+i=0
+"add one: #{i+=1}"

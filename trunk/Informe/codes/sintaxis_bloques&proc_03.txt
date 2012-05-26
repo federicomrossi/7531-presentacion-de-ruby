@@ -1,0 +1,3 @@
+#Proc anonimos
+trap "SIGINT", proc{ print "^C ha sido pulsado.\n" }
+trap "SIGINT", 'print "^C ha sido pulsado.\n"' #Forma mas compacta

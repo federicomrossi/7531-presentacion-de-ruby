@@ -1,0 +1,10 @@
+#Definicion de un metodo
+def sayHello(name)
+	puts "Hello #{name}!."
+end
+
+#Parametros x defecto
+def new_method(a = "This", b = "is", c = "fun")
+	puts a + ' ' + b + ' ' + c + '.'
+end
+new_method('Rails') #Rails is fun
