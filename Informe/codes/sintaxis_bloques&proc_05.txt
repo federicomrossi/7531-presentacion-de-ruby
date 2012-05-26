@@ -1,0 +1,8 @@
+#funciones lambda
+lproc = lambda {|a,b| puts "#{a + b} <- the sum"}
+nproc = Proc.new {|a,b| puts "#{a + b} <- the sum"}
+
+nproc.call(1, 2, 3)
+# 3
+lproc.call(1, 2, 3)
+# !ArgumentError (wrong number of arguments (3 for 2))

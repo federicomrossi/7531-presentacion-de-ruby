@@ -1,0 +1,6 @@
+#Procs
+inthandler = proc{ print "^C ha sido pulsado.\n" }
+trap "SIGINT", inthandler
+
+addHandlerToSIGINT = proc{|handler| trap("SIGINT", handler) }
+addHandlerToSIGINT.call(inthandler)

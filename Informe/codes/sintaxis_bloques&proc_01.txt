@@ -1,0 +1,9 @@
+#Bloques Basicos
+myarray.each {|element| print "[" + element + "]... " }
+#Se esta pasando como parametro, el
+#contenido del bloque al metodo each
+#para que lo ejecute
+
+myarray.each do |element|
+print "[" + element + "]... "
+end

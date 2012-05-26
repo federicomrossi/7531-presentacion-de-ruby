@@ -216,6 +216,168 @@ Sin duda, Ruby fue diseñado para hacer a los programadores mas productivos y fe
 
 	Ha llegado el momento de conocer la sintaxis de Ruby. El lector será capaz de notar una simpleza extrema de esta, lo que no significa una deficiencia en su potencial. Es decir, veremos que a partir de un número muy acotado de lineas de código seremos capaces de realizar programas realmente interesantes.
 
+\subsection{Tipos}
+Todos los tipos de ruby heredan de la clase Object, es decir que todos los tipos en ruby son objetos. Existen clases ya construidas que representan los tipos básicos de ruby sobre los cuales se construyen los bloques de todos los programas que se desarrollan en ruby.
+
+\subsection{Tipos numéricos}
+Los numeros en ruby son representados por las clases: Fixnum (entero  -2¨30..2¨30) y Bignum.
+Cuando se crea un objeto numérico se asigna automáticamente al tipo Fixnum, si excede el rango será un Bignum.
+Los numeros enteros son creados ingresando el número sin coma. El formato de representación particular depende de la base del sistema numérico que se utilice. Rubi soporta las bases numéricas 10, 8, 16 y 2.
+
+% Código
+\lstinputlisting[label=code:sintaxis_tipo_01,caption="Tipos Numéricos"]{codes/sintaxis_tipo_01.rb} 
+\bigskip
+
+	En el \refcode{code:sintaxis_tipo_01}, se ven los tipos numércos básicos que encontramos en cualquier lenguaje. Debajo de estos se encuentran sus particulares al ser objetos y no ser simplemente "tipos nativos". Existen otras representaciones numéricas como los Numeros imaginarios (Complex). En las secciones siguientes se veran el detalle el resto de los tipos básicos de ruby: Strings y Collections. 
+
+\subsection{Strings}
+Los strings son simples secuencias de bytes que representan una secuencia de caracteres. A continuación se muestran ejemplos de código sobre sus cualidades básicas. En la siguiente sección se muestra el poder de las expresiones regulares.
+
+% Código
+\lstinputlisting[label=code:sintaxis_strings_01,caption="Representacion de strings"]{codes/sintaxis_strings_01.rb} 
+\bigskip
+
+% Código
+\lstinputlisting[label=code:sintaxis_strings_02,caption="Representación de strings"]{codes/sintaxis_strings_02.txt} 
+\bigskip
+
+% Código
+\lstinputlisting[label=code:sintaxis_strings_03,caption="Representacion de strings"]{codes/sintaxis_strings_03.txt} 
+\bigskip
+
+\subsection{Expresiones regulares}
+Otro punto importante integrado en el lenguaje y siguiendo los buenos resultados que se obtiene en PERL, son las expresiones regulares. Estas permiten comprobar si una cadena satisface un patrón.
+
+(Tabla de Caracteres especiales en expresiones regulares)
+
+\begin{tabular}{| l | l |}
+	\hline
+	Carácter			&	Descripción													\\
+	\hline \hline
+	[]				&	Especificación de rango. (p.e. [a-z] representa una letra en el rango de la a a la z	\\
+	\hline
+	\textbackslash w		&	Letra o dígito; es lo mismo que [0-9A-Za-z]								\\
+	\hline
+	\textbackslash W	&	Ni letra, ni dígito.												\\
+	\hline
+	\textbackslash s		&	Espacio, es lo mismo que [ t n r f]									\\
+	\hline
+	\textbackslash S		&	No espacio														\\
+	\hline
+	\textbackslash d		&	Dígito; es lo mismo que [0-9]										\\
+	\hline
+	\textbackslash D		&	No dígito														\\
+	\hline
+	\textbackslash b		&	Backspace (0x08) (sólo si aparece en una especificación de rango)				\\
+	\hline
+	\textbackslash b		&	Límite de palabra (sólo si no aparece en una especificación de rango)			\\
+	\hline
+	\textbackslash B		&	No límite de palabra												\\
+	\hline
+	*				&	Cero o más repeticiones de lo que precede								\\
+	\hline
+	+				&	Una o más repeticiones de lo que precede								\\
+	\hline
+	[m,n]			&	Al menos m y como máximo n de lo que precede							\\
+	\hline
+	?	 			&	Al menos una repetición de lo que precede; es lo mismo que [0,1]				\\
+	\hline
+	| 				&	Puede coincidir con lo que precede o con lo que sigue						\\
+	\hline
+	() 				&	Agrupamiento													\\
+	\hline
+\end{tabular}
+
+
+% Código
+\lstinputlisting[label=code:sintaxis_regexpr_01,caption="Expresiones regulares"]{codes/sintaxis_regexp_01.rb} 
+\bigskip
+
+\subsection{Colecciones - Rangos}
+La colección más primitiva de todas es el rango que permite representar una colección secuencial de valores (números o letras secuenciales)
+Para indicar rangos se pueden utilizar los dos puntos (incluye al primer elemento y al último elemento inclusive) o tres puntos (excluye al último elemento del rango).
+
+% Código
+\lstinputlisting[label=code:sintaxis_rangos_01,caption="Rangos"]{codes/sintaxis_rangos_01.rb} 
+\bigskip
+
+
+\subsection{Colecciones - Arrays}
+A continuación se muestran ejemplos sobre el uso de arrays. Más adelante, cuando se vean los conceptos de bloques se veran los iteradores sobre esta y el resto de las colecciones.
+
+% Código
+\lstinputlisting[label=code:sintaxis_arrays_01,caption="Arrays"]{codes/sintaxis_arrays_01.rb} 
+\bigskip
+
+\subsection{Colecciones - Hash}
+Conocidos también como diccionarios (aunque en el mundo ruby se prefiere el nombre hash), a continuación se exponen ejemplos de uso de los mismos.
+
+% Código
+\lstinputlisting[label=code:sintaxis_hash_01,caption="Hash"]{codes/sintaxis_hash_01.rb} 
+\bigskip
+
+\subsection{Variables}
+En ruby las variables son referencias a valores en memoria. Cuando se asigna una variable a otra, no se duplica el objeto. Para duplicar objetos se puede utilizar los métodos clone o dup que son de Object.
+Las variables pueden tener alcance global, local (dadas por cualquier bloque: bloque de una estructura de control o bloque de un método) o de clase.
+
+% Código
+\lstinputlisting[label=code:sintaxis_variables_01,caption="Variables"]{codes/sintaxis_variables_01.rb} 
+\bigskip
+
+\subsection{Metodos}
+
+Cuando un método es llamado en Ruby, técnicamente no se esta “llamando” un método. Lo que se esta haciendo es enviando un mensaje a un objeto, como diciendo: “Hey, vos tenes este método?” si lo tiene entonces se ejecuta, si no lo tiene se lanza una exception “NoMethodError”.
+Los métodos siempre devuelven un valor, el que corresponde a la última sentencia que ejecuta. 
+
+% Código
+\lstinputlisting[label=code:sintaxis_metodos_01,caption="Declaración metodos"]{codes/sintaxis_metodos_01.txt} 
+\bigskip
+
+% Código
+\lstinputlisting[label=code:sintaxis_metodos_02,caption="Parametros"]{codes/sintaxis_metodos_02.txt} 
+\bigskip
+
+% Código
+\lstinputlisting[label=code:sintaxis_metodos_03,caption="Alto orden utilizando metodos"]{codes/sintaxis_metodos_03.txt} 
+\bigskip
+
+\subsection{Bloques y Func}
+
+Los bloques son un concepto muy poderoso e importante en Ruby. En ruby los bloques son objetos que contienen código y todo el contexto necesario para ejecutarse.
+
+% Código
+\lstinputlisting[label=code:sintaxis_bloques&proc_01,caption="Bloques básicos"]{codes/sintaxis_bloques&proc_01.txt} 
+\bigskip
+
+Un objeto procedimiento nuevo se obtiene utilizando Proc. Se pueden utilizar procedimientos anónimos. Estos objetos preservan el contexto en el cual fueron creados.
+
+% Código
+\lstinputlisting[label=code:sintaxis_bloques&proc_02,caption="Proc"]{codes/sintaxis_bloques&proc_02.txt} 
+\bigskip
+
+% Código
+\lstinputlisting[label=code:sintaxis_bloques&proc_02,caption="Proc anónimos"]{codes/sintaxis_bloques&proc_03.txt} 
+\bigskip
+
+% Código
+\lstinputlisting[label=code:sintaxis_bloques&proc_02,caption="Proc y Bloques"]{codes/sintaxis_bloques&proc_04.txt} 
+\bigskip
+
+% Código
+\lstinputlisting[label=code:sintaxis_bloques&proc_02,caption="Func lambda"]{codes/sintaxis_bloques&proc_05.txt} 
+\bigskip
+
+\subsection{Estructura de control}
+
+% Código
+\lstinputlisting[label=code:sintaxis_bloques&proc_02,caption="Estructuras de control"]{codes/sintaxis_estructuracontrol_01.rb}
+\bigskip
+
+\subsection{Convención de nombres}
+
+En Ruby se añade, por convención, ! o ? al final de ciertos nombre de métodos.  La marca de exclamación (!, pronunciada como un “bang!” sonoro)  recalca algo potencialmente peligroso, es decir, algo que puede modificar el valor de lo que toca. El método de la clase cadena chop! afecta directamente a la cadena pero chop sin el signo de exclamación actúa sobre una copia.
+Los nombres de métodos que finalizan con un signo de interrogación (?, pronunciada a veces como un “huh?” sonoro) indica que el método es un “predicado”, aquel que puede devolver o true o false.
+
 
 \subsection{Métodos Singleton}
 

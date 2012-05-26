@@ -1,0 +1,22 @@
+#Programacion de alto orden
+# Implementacion del sig patron:
+# def <name>(a, b)
+#   return 0 if a > b
+#   <term>(a) + <name>(<next>(a), b)
+# end
+def sum(term, a, the_next, b)
+  return 0 if a > b
+  term.call(a) + sum(term, the_next.call(a), the_next, b)
+end
+
+def termino(x)
+  x
+end
+
+def inc(x)
+ x+=1
+end
+
+term = self.method(:termino).to_proc
+the_next= self.method(:inc).to_proc
+sum(term,1,the_next,10)

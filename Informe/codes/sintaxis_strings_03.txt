@@ -1,0 +1,7 @@
+#Concatenacion y repeticion
+"Matzumoto" + nombre
+apellido * 2
+
+#Extraccion de caracteres
+wordFOO = "foo"
+wordFOO[-1] #muestra 111 (el codigo ASCII de "o")
