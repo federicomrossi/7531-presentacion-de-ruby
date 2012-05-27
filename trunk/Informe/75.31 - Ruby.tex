@@ -560,6 +560,31 @@ Para controlar el acceso a los recursos compartidos por varios thread (exclusió
 	El propósito de este apartado es unicamente informativo, por lo que no profundizaremos sobre como es el funcionamiento del nuevo algoritmo\footnote{''Para más información acerca de cómo es que trabaja el ``Bitmap Marking GC'' diríjase a http://patshaughnessy.net/2012/3/23/why-you-should-be-excited-about-garbage-collection-in-ruby-2-0}. 
 
 
+%EL INTERPRETE DE RUBY
+\section{El interprete de Ruby}
+
+Como lo enunciamos en el comienzo del informe, Ruby es un lenguaje de scripts interpretado para una programación orientada a objetos rápida y sencilla. En esos principios (ver sección 4) son en los que se centro Matz en su rol de diseñador de lenguaje de programación Ruby. Matz implemento el primer interprete de ruby sin preocuparse demasiado por los problemas de performance y priorizando los principios de diseño de lenguaje de Ruby. A medida que el lenguaje se fue populrizando se tomo más en serio el problema de performance general debido al interprete.
+
+\subsection{MRI: El primer interprete}
+
+La crítica más habitual de Ruby es el pobre rendimiento del intérprete frente a otros lenguajes rivales. Las cifras indican que por lo general para un mismo algoritmo el intérprete de Ruby ofrece un menor rendimiento que Python, PHP, Perl ... pudiendo poner en la lista cualquiera de los lenguajes más populares.
+
+ El intérprete de Ruby escrito por Matz, conocido como MRI (de Matz Reference Implementation, o Implementación de Referencia de Matz) adolece de no pocos problemas (hay quien afirma que un lenguaje como C no es buena elección a la hora de implementar lenguajes dinámicos)
+
+En todo caso, la comunidad de Rubistas (con Matz a la cabeza) hace tiempo que ha asumido el problema de rendimiento en la MRI y han surgido no pocos proyectos para corregir esta deficiencia. Uno de los problemas con los que se enfrentan los valientes que desean implementar un lenguaje es que el lenguaje Ruby no dispone de una especificación funcional. Por tanto, la única fuente fiable de documentación sobre los entresijos del lenguaje Ruby es el estudio del código fuente en C del intérprete escrito por Matz (de ahí el nombre MRI)
+
+
+\subsection{YARV (o KRI)}
+
+YARV (yeat another ruby interprete) de Sasada Koich es  la reimplementación de Ruby usando su propia máquina virtual y un compilador a código de bytes. El trabajo de Sasada Koichi, basado en un enfoque más moderno que la implementación de Matz, es tan brillante que forma parte de las versiones oficiales 1.9.x de Ruby. Aún hay algún trabajo por hacer con el problema de performance de Ruby pero cabe destacar que, por lo general, una aplicación Rails verá mejoras de rendimiento del 15% sólo por usar YARV.
+
+YARV divide el problema de la implementación del lenguaje en dos etapas: un compilador de código de bytes y una máquina virtual que ejecuta dicho bytecode. Surge de manera natural la pregunta de si no sería posible usar alguna máquina virtual ya existente y generar bytecode compatible con ella. Si hablamos de máquinas virtuales, la de Java está más que probada.
+
+\subsection{Otros interpretes para ruby}
+
+JRuby consiste en escribir un intérprete Ruby escrito en Java. Una de las ventajas de ejecutar Ruby en una máquina virtual de Java, por supuesto, es tener acceso a código ya existente escrito en Java lo cual hace a JRuby la implementación ideal para integrar Rails en entornos enterprise. Otra ventaja es que JRuby por definición se verá beneficiado de las mejoras posteriores que se realicen en el intérprete Java. JRuby es un intérprete de Ruby escrito en Java, XRuby es un traductor de Ruby a bytecode de Java (o lo que es lo mismo, de un fichero .rb generará un .class) Este traductor está basado en ANTLR. XRuby ya es capaz de generar bytecode Java para toda la librería estándar de Ruby y para Ruby on Rails 1.2.x
+
+Rubinius es otro interprete cuyo enfoque consiste en escribir la mayor parte del lenguaje en Ruby y dejar que la máquina virtual -escrita en C- ejecute el menor subconjunto posible de funcionalidad. En concreto, Rubinius pone el énfasis en el recolector de memoria y la implementación de forks y threads. A destacar que Rubinius parece surgir del mundo Rails (Evan Phoenix trabaja en Engine Yard, proveedores de alojamiento avanzado Rails) por tanto buena parte de las mejoras que promete en el intérprete atacan a los problemas de rendimiento que más pueden aquejar a nuestras aplicaciones Rails.
 
 
 % RUBY ON RAILS: UN PUNTO FUERTE DEL LENGUAJE
