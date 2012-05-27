@@ -240,7 +240,7 @@ Los números enteros son creados ingresando el número sin coma. El formato de r
 	Otra particularidad a saber, la cual ya fue mencionada anteriormente, es que Ruby soporta números enteros de doble precisión. Para comprobar esto tengamos en cuenta primeramente el programa del \refcode{code:sintaxis_tipo_factorial}, el cual simplemente calcula el factorial de un número pasado por parámetro al ser ejecutado por consola.
 
 % Código
-\lstinputlisting[label=code:sintaxis_tipo_factorial,caption=``Factorial'']{codes/sintaxis_tipo_factorial.rb} 
+\lstinputlisting[label=code:sintaxis_tipo_factorial,caption=``factorial.rb'']{codes/sintaxis_tipo_factorial.rb} 
 \bigskip
 
 Ahora, notemos que si calculamos el factorial de cualquier número (\refcode{code:sintaxis_tipo_factorial_console}), Ruby será capaz de realizar dicha computación ya que puede tratar cualquier entero que esté permitido por la memoria del equipo.
@@ -486,7 +486,7 @@ Para controlar el acceso a los recursos compartidos por varios thread (exclusió
 %% RECOLECCIÓN DE BASURA
 \subsection{Recolección de basura}
 
-	La versión actual más estable de Ruby (\textit{versión 1.9.3}) utiliza el recolector de basura llamado "\textit{Lazy Sweep}", denominado asi por su creador, Narihiro Nakamura. Este no es mas que una implementación del clásico \textit{Mark and Sweep}. En lo que sigue de esta sección nos dedicaremos a dar una breve descripción de como es que funciona dicho recolector en Ruby.
+	La versión actual más estable de Ruby (\textit{versión 1.9.3}) utiliza el recolector de basura llamado "\textit{Lazy Sweep}", denominado así por su creador, Narihiro Nakamura. Este no es mas que una implementación del clásico \textit{Mark and Sweep}. En lo que sigue de esta sección nos dedicaremos a dar una breve descripción de como es que funciona dicho recolector en Ruby.
 	\par
 	En Ruby, cada valor string es guardado internamente por la \textit{MRI} (Matz's Ruby Interpreter) en una estructura de C llamada \textit{RString}, abreviatura para ``Ruby String''. Cada estructura \textit{RString} es dividida en dos partes, tal como se muestra en la \textit{Figura 1}.
 \bigskip
