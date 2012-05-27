@@ -376,7 +376,7 @@ Otro punto importante integrado en el lenguaje, y siguiendo los buenos resultado
 \subsubsection{Colecciones: \textit{Rangos}}
 La colección más primitiva de todas es el rango que permite representar una colección secuencial de valores (números o letras secuenciales)
 Para indicar rangos se pueden utilizar los dos puntos (incluye al primer elemento y al último elemento inclusive) o tres puntos (excluye al último elemento del rango).
-El uso de los rangos pueden ser para secuencias (en la cual se genera una serie de objetos secuenciales que pude tener muchos usos), para crear expresiones condicionales y crear intervalos. En el \refcode{code:sintaxis_rangos_01}  se expone un ejemplo de cada tipo.
+El uso de los rangos pueden ser para secuencias (en la cual se genera una serie de objetos secuenciales que pude tener muchos usos), para crear expresiones condicionales y crear intervalos. En el \refcode{code:sintaxis_rangos_01}  se expone un ejemplo de cada tipo. Estos usos son originales de Ruby.
 
 % Código
 \lstinputlisting[label=code:sintaxis_rangos_01,caption=``Rangos'']{codes/sintaxis_rangos_01.rb} 
@@ -399,6 +399,39 @@ Conocidos también como diccionarios (aunque en el mundo ruby se prefiere el nom
 \lstinputlisting[label=code:sintaxis_hash_01,caption="Hash"]{codes/sintaxis_hash_01.rb} 
 \bigskip
 
+%% SYMBOLS
+\subsection{Symbols}
+Symbols son la alternativa de las constantes para crear nombres (simbolos) que representen un único valor.  En el ejemplo mostrado en  \refcode{code:sintaxis_symbols_01}  se expone este concepto: "el valor no importa, importa el significado".
+
+% Código
+\lstinputlisting[label=code:sintaxis_symbols_01,caption="Hash"]{codes/sintaxis_symbols_01.rb} 
+\bigskip
+
+Las claves de los Hash podrian ser Symbols. De esta manera se asegura que son únicas, puesto que los Symbols siempre tienen valores únicos y son garantia que mantienen esta cualidad durante todo el programa. El siguiente código de ejemplo muestra este uso.
+
+% Código
+\lstinputlisting[label=code:sintaxis_symbols_02,caption="Hash"]{codes/sintaxis_symbols_02.rb} 
+\bigskip
+
+%% Clases
+\subsection{Clases}
+
+Una clase es definida por la palabra reservada class seguida por el identificador de la clase. La definición de la clsae termina con end.
+Una vez que una clase es declarada, esta puede ser instanciada por el metodo new. 
+Cuando un metodo de una clase es jecutado, la informacion de la instacia es retenida en la variable self.
+Las variables de instancia, se identifican con un '@'.  
+Cuando un objeto es creado con new, ruby invoca a initialize. El codigo  en  \refcode{code:sintaxis_clases_01} muestra las caracteristicas descriptas hasta este momento.
+
+% Código
+\lstinputlisting[label=code:sintaxis_clases_01,caption="Hash"]{codes/sintaxis_clases_01.rb} 
+\bigskip
+
+Ruby soporta herencia, de manera tal que una clase pueda heredar metodos y atributos de otra. 
+Tambien soporta variables de clase las cuales son variables alcanzables por todas las intancias de clases. El codigo  en  \refcode{code:sintaxis_clases_01} muestra la sintaxis de la herencia y de las variables de clase.
+
+% Código
+\lstinputlisting[label=code:sintaxis_clases_01,caption="Hash"]{codes/sintaxis_clases_02.rb} 
+\bigskip
 
 %% VARIABLES
 \subsection{Variables}
@@ -408,7 +441,6 @@ Las variables pueden tener alcance global, local (dadas por cualquier bloque: bl
 % Código
 \lstinputlisting[label=code:sintaxis_variables_01,caption="Variables"]{codes/sintaxis_variables_01.rb} 
 \bigskip
-
 
 %% MÉTODOS
 \subsection{Métodos}
