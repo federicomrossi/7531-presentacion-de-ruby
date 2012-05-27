@@ -252,19 +252,27 @@ Ahora, notemos que si calculamos el factorial de cualquier número (\refcode{cod
 
 %% STRINGS
 \subsubsection{Strings}
-Los \textit{strings} son simples secuencias de bytes que representan una secuencia de caracteres. A continuación se muestran ejemplos de código sobre sus cualidades básicas. En la siguiente sección se muestra el poder de las expresiones regulares.
+	
+	Los \textit{strings} (cadenas) son simples secuencias de bytes que representan una secuencia de caracteres. Una cadena puede estar entre comillas dobles (\textit{``...''}) o comillas simples (\textit{`...'}), tal como se muestra en el \refcode{code:sintaxis_strings_01}. 
 
 % Código
 \lstinputlisting[label=code:sintaxis_strings_01,caption=``Representacion de strings'']{codes/sintaxis_strings_01.rb}
-
-% Código
-\lstinputlisting[label=code:sintaxis_strings_02,caption=``Representación de strings'']{codes/sintaxis_strings_02.txt} 
 \bigskip
 
+	Utilizar comillas dobles o simples produce efectos diferentes en algunos casos. Una cadena entre comillas dobles habilita los caracteres de escape con el uso de la barra invertida, y la evaluación de expresiones integradas con \textit{\#\{\}} (\refcode{code:sintaxis_strings_02}). Una cadena entre comillas simples no permite este tipo de evaluación, por lo que considera a toda la expresión dentro de las comillas como una cadena.
+
 % Código
-\lstinputlisting[label=code:sintaxis_strings_03,caption=``Representacion de strings'']{codes/sintaxis_strings_03.txt} 
+\lstinputlisting[label=code:sintaxis_strings_02,caption=``Evaluación de expresiones integradas'']{codes/sintaxis_strings_02.txt} 
 \bigskip
 
+	El manejo de strings de Ruby es más inteligente y más intuitivo que en C. Por ejemplo, se pueden concatenar cadenas con \textit{+}, y repetir una cadena varias veces con \textit{*} (\refcode{code:sintaxis_strings_03}). Nótese que no debemos de tener en cuenta el espacio ocupado por una cadena. Ruby nos desliga de gestionar la memoria utilizada por estas.
+
+% Código
+\lstinputlisting[label=code:sintaxis_strings_03,caption=``Concatenado y repetición'']{codes/sintaxis_strings_03.txt} 
+\bigskip
+
+
+%% EXPRESIONES REGULARES
 \subsubsection{Expresiones regulares}
 Otro punto importante integrado en el lenguaje, y siguiendo los buenos resultados que se obtubieron en PERL, son las \textit{expresiones regulares}. Estas permiten comprobar si una cadena satisface un patrón en particular. En el \textit{Cuadro 1} se puede observar un listado de los caracteres especiales para su uso.\\
 
