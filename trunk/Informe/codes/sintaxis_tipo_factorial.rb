@@ -7,4 +7,4 @@ def factorial(n)
   end
 end
 
-puts fact(ARGV[0].to_i)
+puts factorial(ARGV[0].to_i)
