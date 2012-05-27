@@ -275,11 +275,11 @@ Ahora, notemos que si calculamos el factorial de cualquier número (\refcode{cod
 
 \begin{itemize}
 	\itemsep=1pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
-	\item  %q	Construye string con comillas simples
-	\item  %Q	Construye string con comillas dobles
-	\item  %        Construye string con comillas dobles
-	\item %w	Construye un Array de Strings (con comillas simples)
-	\item  %W     Construye un Array de Strings (con comillas dobles)
+	\item  \%q	Construye string con comillas simples
+	\item  \%Q	Construye string con comillas dobles
+	\item  \%        Construye string con comillas dobles
+	\item \%w	Construye un Array de Strings (con comillas simples)
+	\item  \%W     Construye un Array de Strings (con comillas dobles)
 \end{itemize}
 	
 	El uso de estas expresiones compactas se puede observar en \refcode{code:sintaxis_strings_04}.
@@ -384,6 +384,7 @@ Para indicar rangos se pueden utilizar los dos puntos (incluye al primer element
 
 %%% COLECCIONES: Arrays
 \subsubsection{Colecciones: \textit{Arrays}}
+Los Arrays son una lista secuencial de objetos que pueden ser almacenados,  modificados,  usando una gran variedad de comandos en ruby.  
 A continuación, en el código \refcode{code:sintaxis_arrays_01}, se muestran ejemplos sobre el uso de arrays. Más adelante, cuando se vean los conceptos de bloques se veran los iteradores sobre esta y el resto de las colecciones.
 
 % Código
@@ -391,7 +392,7 @@ A continuación, en el código \refcode{code:sintaxis_arrays_01}, se muestran ej
 \bigskip
 
 \subsubsection{Colecciones: \textit{Hash}}
-Conocidos también como diccionarios (aunque en el mundo ruby se prefiere el nombre hash), a continuación se exponen ejemplos de uso de los mismos.
+Conocidos también como diccionarios (aunque en el mundo ruby se prefiere el nombre hash), representan las Hash Table que son una colección indexada de datos accedidos por una clave. Son una implementación de búsqueda muy eficiente y son extensivamente utilizados en la construcción del lenguaje Ruby. A continuación se exponen ejemplos de uso de los mismos.
 
 % Código
 \lstinputlisting[label=code:sintaxis_hash_01,caption="Hash"]{codes/sintaxis_hash_01.rb} 
