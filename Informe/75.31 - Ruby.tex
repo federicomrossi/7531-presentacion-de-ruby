@@ -259,7 +259,7 @@ Ahora, notemos que si calculamos el factorial de cualquier número (\refcode{cod
 \lstinputlisting[label=code:sintaxis_strings_01,caption=``Representacion de strings'']{codes/sintaxis_strings_01.rb}
 \bigskip
 
-	Utilizar comillas dobles o simples produce efectos diferentes en algunos casos. Una cadena entre comillas dobles habilita los caracteres de escape con el uso de la barra invertida, y la evaluación de expresiones integradas con \textit{\#\{\}} (\refcode{code:sintaxis_strings_02}). Una cadena entre comillas simples no permite este tipo de evaluación, por lo que considera a toda la expresión dentro de las comillas como una cadena.
+	Utilizar comillas dobles o simples produce efectos diferentes en algunos casos. Una cadena entre comillas dobles habilita los caracteres de escape con el uso de la barra invertida, y la evaluación de expresiones integradas con \textit{\#\{\}} (\refcode{code:sintaxis_strings_02}). Una cadena entre comillas simples no permite este tipo de evaluación, por lo que considera a toda la expresión dentro de las comillas como una cadena y solo admite dos reemplazos \textit{\textbackslash\textbackslash} y \textit{\textbackslash'} para insertar los caracteres \textit{\textbackslash} y \textit{'}.
 
 % Código
 \lstinputlisting[label=code:sintaxis_strings_02,caption=``Evaluación de expresiones integradas'']{codes/sintaxis_strings_02.txt} 
@@ -269,6 +269,23 @@ Ahora, notemos que si calculamos el factorial de cualquier número (\refcode{cod
 
 % Código
 \lstinputlisting[label=code:sintaxis_strings_03,caption=``Concatenado y repetición'']{codes/sintaxis_strings_03.txt} 
+\bigskip
+
+	En ruby existe el concepto de delimitadores de strings. Estos permiten construir strings en expresiones compactas, en sus dos representaciones (con comillas simples o dobles) o construir arrays de strings. Existen 5 delimitadores de strings:
+
+\begin{itemize}
+	\itemsep=1pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
+	\item  %q	Construye string con comillas simples
+	\item  %Q	Construye string con comillas dobles
+	\item  %        Construye string con comillas dobles
+	\item %w	Construye un Array de Strings (con comillas simples)
+	\item  %W     Construye un Array de Strings (con comillas dobles)
+\end{itemize}
+	
+	El uso de estas expresiones compactas se puede observar en \refcode{code:sintaxis_strings_04}.
+
+% Código
+\lstinputlisting[label=code:sintaxis_strings_04,caption=``Delimitadores de strings'']{codes/sintaxis_strings_04.rb} 
 \bigskip
 
 
@@ -320,8 +337,35 @@ Otro punto importante integrado en el lenguaje, y siguiendo los buenos resultado
 
 \end{table}
 
+	Una expresion regular en Ruby esta delimitada por dos \textit{/}:
+\begin{itemize}
+	\itemsep=1pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
+	\item  		textit{/regular expression/}
+\end{itemize}
 
-\noindent En el \refcode{code:sintaxis_regexpr_01} se puede observar un ejemplo de uso de las expresiones regulares.
+
+	Literalmente una expresion regular es un objeto del tipo \textit{Regexp}. Estos objetos pueden ser creados de las siguientes 6 maneras:
+
+\begin{itemize}
+	\itemsep=1pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
+	\item  /pattern/              
+	\item  /pattern/i 
+	\item  \%r{pattern}
+	\item \%r{pattern}i
+	\item  Regexp.new('pattern'))
+	\item  Regexp.new('pattern', 'i' )
+\end{itemize}
+
+	Independientemente del patron que se utiliza, se le puede agragar cualquiera de las siguientes tres opciones:
+
+\begin{itemize}
+	\itemsep=1pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
+	 \item  i  - Case Insensitive
+	 \item m  - Multiline Mode
+	 \item x  - Extended Mode
+\end{itemize}
+	
+\noindent En el \refcode{code:sintaxis_regexpr_01} se pueden observar 3 ejemplos de uso de las expresiones regulares. En el ejemplo 1 el operador \textit{ '=\~'}  compara una Regexp con un string normal y devuelve true si la Regexpr matchea con una porcion del string. El segundo ejemplo usa los operadores \textit{' \^'} y \textit{ ' \$'} . Estos operadores machean el comienzo y el final de una línea respectivamente.
 
 % Código
 \lstinputlisting[label=code:sintaxis_regexpr_01,caption=``Expresiones regulares'']{codes/sintaxis_regexp_01.rb} 
