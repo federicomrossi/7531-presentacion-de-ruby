@@ -139,7 +139,7 @@ Es así que comenzó a desarrollarlo el 24 de febrero de 1993 y en agosto desarr
 % ¿QUE ES RUBY?
 \section{¿Qué es Ruby?}
 
-	Es un lenguaje escrito en C y fue diseñado teniendo en mente las capacidades de perl y phyton. [ Colocar contenido aquí ]
+	Ruby es un lenguaje de programación interpretado, reflexivo\footnote{La reflexión es una actividad computacional que razona sobre su propia computación. Es decir, si un sistema soporta reflexión, se preserva la estructura del programa como metadatos (datos que describen otros datos) en el código generado.} y orientado a objetos, el cual fue escrito en \textit{C} y fue diseñado teniendo en mente las capacidades de \textit{Perl} y \textit{Phyton}, con características de POO similares a \textit{Smalltalk}.
 
 
 
@@ -215,25 +215,43 @@ Sin duda, Ruby fue diseñado para hacer a los programadores mas productivos y fe
 
 
 % SINTAXIS
-\section{Sintaxis}
+\section{Sintaxis básica}
 
 	Ha llegado el momento de conocer la sintaxis de Ruby. El lector será capaz de notar una simpleza extrema de esta, lo que no significa una deficiencia en su potencial. Es decir, veremos que a partir de un número muy acotado de lineas de código seremos capaces de realizar programas realmente interesantes.
 
+
+%% TIPOS
 \subsection{Tipos}
 Todos los tipos de ruby heredan de la clase Object, es decir que todos los tipos en ruby son objetos. Existen clases ya construidas que representan los tipos básicos de ruby sobre los cuales se construyen los bloques de todos los programas que se desarrollan en ruby.
 
-\subsection{Tipos numéricos}
-Los numeros en ruby son representados por las clases: \textit{Fixnum} (entero  -2¨30..2¨30) y \textit{Bignum}.
+
+%% TIPOS NUMÉRICOS 
+\subsubsection{Tipos numéricos}
+Los números en ruby son representados por las clases: \textit{Fixnum} (entero  -2¨30..2¨30) y \textit{Bignum}.
 Cuando se crea un objeto numérico se asigna automáticamente al tipo Fixnum, si excede el rango será un Bignum.
-Los numeros enteros son creados ingresando el número sin coma. El formato de representación particular depende de la base del sistema numérico que se utilice. Ruby soporta las bases numéricas 10, 8, 16 y 2.
+Los números enteros son creados ingresando el número sin coma. El formato de representación particular depende de la base del sistema numérico que se utilice. Ruby soporta las bases numéricas 10, 8, 16 y 2.
 
 % Código
 \lstinputlisting[label=code:sintaxis_tipo_01,caption=``Tipos Numéricos'']{codes/sintaxis_tipo_01.rb} 
 \bigskip
 
-	En el \refcode{code:sintaxis_tipo_01}, se ven los tipos numércos básicos que encontramos en cualquier lenguaje. Debajo de estos se encuentran sus particulares al ser objetos y no ser simplemente "tipos nativos". Existen otras representaciones numéricas como los Numeros imaginarios (\textit{Complex}). En las secciones siguientes se verán el detalle el resto de los tipos básicos de ruby: \textit{Strings} y \textit{Collections}. 
+	En el \refcode{code:sintaxis_tipo_01}, se pueden ver los tipos numércos básicos que encontramos en cualquier lenguaje. Debajo de estos se encuentran sus particulares al ser objetos y no ser simplemente "tipos nativos". Existen otras representaciones numéricas como los números imaginarios (\textit{Complex}). En las secciones siguientes se verán el detalle el resto de los tipos básicos de ruby: \textit{Strings} y \textit{Collections}.
+	\par
+	Otra particularidad a saber, la cual ya fue mencionada anteriormente, es que Ruby soporta números enteros de doble precisión. Para comprobar esto tengamos en cuenta primeramente el programa del \refcode{code:sintaxis_tipo_factorial}, el cual simplemente calcula el factorial de un número pasado por parámetro al ser ejecutado por consola.
 
-\subsection{Strings}
+% Código
+\lstinputlisting[label=code:sintaxis_tipo_factorial,caption=``Factorial'']{codes/sintaxis_tipo_factorial.rb} 
+\bigskip
+
+Ahora, notemos que si calculamos el factorial de cualquier número (\refcode{code:sintaxis_tipo_factorial_console}), Ruby será capaz de realizar dicha computación ya que puede tratar cualquier entero que esté permitido por la memoria del equipo.
+
+% Código
+\lstinputlisting[label=code:sintaxis_tipo_factorial_console,caption=``Factorial'']{codes/sintaxis_tipo_factorial.console} 
+\bigskip
+
+
+%% STRINGS
+\subsubsection{Strings}
 Los \textit{strings} son simples secuencias de bytes que representan una secuencia de caracteres. A continuación se muestran ejemplos de código sobre sus cualidades básicas. En la siguiente sección se muestra el poder de las expresiones regulares.
 
 % Código
@@ -247,7 +265,7 @@ Los \textit{strings} son simples secuencias de bytes que representan una secuenc
 \lstinputlisting[label=code:sintaxis_strings_03,caption=``Representacion de strings'']{codes/sintaxis_strings_03.txt} 
 \bigskip
 
-\subsection{Expresiones regulares}
+\subsubsection{Expresiones regulares}
 Otro punto importante integrado en el lenguaje, y siguiendo los buenos resultados que se obtubieron en PERL, son las \textit{expresiones regulares}. Estas permiten comprobar si una cadena satisface un patrón en particular. En el \textit{Cuadro 1} se puede observar un listado de los caracteres especiales para su uso.\\
 
 \begin{table}[!hbt]
@@ -301,7 +319,9 @@ Otro punto importante integrado en el lenguaje, y siguiendo los buenos resultado
 \lstinputlisting[label=code:sintaxis_regexpr_01,caption=``Expresiones regulares'']{codes/sintaxis_regexp_01.rb} 
 \bigskip
 
-\subsection{Colecciones - Rangos}
+
+%%% COLECCIONES: Rangos
+\subsubsection{Colecciones: \textit{Rangos}}
 La colección más primitiva de todas es el rango que permite representar una colección secuencial de valores (números o letras secuenciales)
 Para indicar rangos se pueden utilizar los dos puntos (incluye al primer elemento y al último elemento inclusive) o tres puntos (excluye al último elemento del rango).
 
@@ -310,20 +330,23 @@ Para indicar rangos se pueden utilizar los dos puntos (incluye al primer element
 \bigskip
 
 
-\subsection{Colecciones: \textit{Arrays}}
+%%% COLECCIONES: Arrays
+\subsubsection{Colecciones: \textit{Arrays}}
 A continuación, en el código \refcode{code:sintaxis_arrays_01}, se muestran ejemplos sobre el uso de arrays. Más adelante, cuando se vean los conceptos de bloques se veran los iteradores sobre esta y el resto de las colecciones.
 
 % Código
 \lstinputlisting[label=code:sintaxis_arrays_01,caption=``Arrays'']{codes/sintaxis_arrays_01.rb} 
 \bigskip
 
-\subsection{Colecciones: \textit{Hash}}
+\subsubsection{Colecciones: \textit{Hash}}
 Conocidos también como diccionarios (aunque en el mundo ruby se prefiere el nombre hash), a continuación se exponen ejemplos de uso de los mismos.
 
 % Código
 \lstinputlisting[label=code:sintaxis_hash_01,caption="Hash"]{codes/sintaxis_hash_01.rb} 
 \bigskip
 
+
+%% VARIABLES
 \subsection{Variables}
 En ruby las variables son referencias a valores en memoria. Cuando se asigna una variable a otra, no se duplica el objeto. Para duplicar objetos se puede utilizar los métodos clone o dup que son de Object.
 Las variables pueden tener alcance global, local (dadas por cualquier bloque: bloque de una estructura de control o bloque de un método) o de clase.
@@ -332,6 +355,8 @@ Las variables pueden tener alcance global, local (dadas por cualquier bloque: bl
 \lstinputlisting[label=code:sintaxis_variables_01,caption="Variables"]{codes/sintaxis_variables_01.rb} 
 \bigskip
 
+
+%% MÉTODOS
 \subsection{Métodos}
 
 Cuando un método es llamado en Ruby, técnicamente no se esta “llamando” a un método. Lo que se esta haciendo es enviando un mensaje a un objeto, como diciendo: “Hey, vos tenés este método?” si lo tiene entonces se ejecuta, si no lo tiene se lanza una exception “NoMethodError”. Esto, como se puede notar, proviene del paradigma de POO.
@@ -346,6 +371,8 @@ Los métodos siempre devuelven un valor, el que corresponde a la última sentenc
 % Código
 \lstinputlisting[label=code:sintaxis_metodos_03,caption=``Alto orden utilizando métodos'']{codes/sintaxis_metodos_03.txt} 
 
+
+%% BLOQUES Y FUNC
 \subsection{Bloques y Func}
 
 Los \textit{bloques} son un concepto muy poderoso e importante en Ruby. Estos son objetos que contienen código y todo el contexto necesario para ejecutarse.
@@ -369,19 +396,26 @@ Un objeto procedimiento nuevo se obtiene utilizando la palabra reservada \textit
 \lstinputlisting[label=code:sintaxis_bloques&proc_05,caption=``Función lambda'']{codes/sintaxis_bloques&proc_05.txt} 
 \bigskip
 
+
+%% ESTRUCTURAS DE CONTROL
 \subsection{Estructuras de control}
 
 % Código
 \lstinputlisting[label=code:sintaxis_estructuracontrol_01,caption=``Estructuras de control'']{codes/sintaxis_estructuracontrol_01.rb}
 \bigskip
 
+
+%% CONVENCIÓN DE NOMBRES
 \subsection{Convención de nombres}
 
 En Ruby se añade, por convención, \textit{!} o \textit{?} al final de ciertos nombre de métodos.  La marca de exclamación (!, pronunciada como un “bang!” sonoro)  recalca algo potencialmente peligroso, es decir, algo que puede modificar el valor de lo que toca. El método de la clase cadena chop! afecta directamente a la cadena pero chop sin el signo de exclamación actúa sobre una copia.
 Los nombres de métodos que finalizan con un signo de interrogación (?, pronunciada a veces como un “huh?” sonoro) indica que el método es un “predicado”, aquel que puede devolver o true o false.
 
 
-\subsection{Métodos Singleton}
+
+
+% MÉTODOS SINGLETON
+\section{Métodos Singleton}
 
 	El comportamiento de una instancia es determinado por su clase, pero hay momentos en los que es necesario que una instancia en particular posea un comportamiento especial. En la mayoría de los lenguajes deberíamos adentrarnos en la problematica de definir una nueva clase, la cual será instanciada una sola vez. En cambio, Ruby permite dar a cualquier objeto sus propios métodos.
 
@@ -390,6 +424,9 @@ Los nombres de métodos que finalizan con un signo de interrogación (?, pronunc
 \bigskip
 
 	En el \refcode{code:code1}, las instancias \textit{test1} y \textit{test2} pertenecen a la misma clase, pero en \textit{test2} se ha redefinido el método \textit{size} por lo que se comportará de forma diferente. Un método que pertenece sólo a un único objeto se denomina \textit{Método Singleton}.
+
+
+
 
 %MULTITHREADING
 \section{Multithreading}
@@ -406,6 +443,8 @@ Los nombres de métodos que finalizan con un signo de interrogación (?, pronunc
 	\par
 	Cuando creamos un thread, estamos pasando la pagina web requerida como parametro. Luego este parametro es pasado dentro del bloque como myPage.
 
+
+%% MANIPULANDO THREADS
 \subsection{Manipulando threads}
 
 	En el código anterior vemos que un metodo que se invoca de cada thread es join. Cuando un programa en Ruby termina, se matan todos los threads sin tener en cuenta su estado. Join sirve para esperar que termine su ejecución un thread particular, de esta forma el codigo que vimos se asegura que terminen los 3 threads que se lanzaron.
@@ -413,6 +452,7 @@ Los nombres de métodos que finalizan con un signo de interrogación (?, pronunc
 	Además de join hay otros métodos, como por ejemplo \textit{Thread.current} obtiene el thread actual. Para obtener una lista de todos los threads en ejecución o parados se ejecuta Thread.list. Para saber el estado de un thread se puede ejecutar \textit{thread.status} o \textit{thread.alive}.
 
 
+%% VARIABLES DE THREADS
 \subsection{Variables de threads}
 Un thread puede acceder a cualquier variable que se encuentre en el alcance donde fue creado. Variables locales del thread (dentro del alcance del bloque de ejecucion del thread) no son compartidas por otros threads. Se puede utilizar a los thread como hash donde se puedan almacenar variables locales a cada thread y ser accedidas desde el el thread principal.
 
@@ -420,6 +460,8 @@ Un thread puede acceder a cualquier variable que se encuentre en el alcance dond
 \lstinputlisting[label=code:multithreading_02,caption=``Variables de threads'']{codes/multithreading_02.txt} 
 \bigskip
 
+
+%% SEMÁFOROS
 \subsection{Semáforos}
 
 Para controlar el acceso a los recursos compartidos por varios thread (exclusión mutua), ruby implementa en el core los semaforos en la clase Mutex. En las imagenes siguientes se ven la sintaxis y posteriormente un ejemplo de uso.
@@ -432,13 +474,16 @@ Para controlar el acceso a los recursos compartidos por varios thread (exclusió
 \lstinputlisting[label=code:multithreading_04,caption=``Ejemplo utilizando mutex'']{codes/multithreading_04.rb} 
 \bigskip
 
+
+
+
 % MANEJO DE MEMORIA
 \section{Manejo de memoria}
 
 	En Ruby el manejo de memoria se realiza de forma automática, lo cual es uno de los pilares que sostienen la filosofía del lenguaje: \textit{realizar desarrollos de forma rápida y sencilla}. De esta manera, el programador se desliga de pensar en temas como pérdidas de memoria, lo cual es causa de muchos dolores de cabeza en el desarrollo de aplicaciones en otros lenguajes.
 
 
-% RECOLECCIÓN DE BASURA
+%% RECOLECCIÓN DE BASURA
 \subsection{Recolección de basura}
 
 	La versión actual más estable de Ruby (\textit{versión 1.9.3}) utiliza el recolector de basura llamado "\textit{Lazy Sweep}", denominado asi por su creador, Narihiro Nakamura. Este no es mas que una implementación del clásico \textit{Mark and Sweep}. En lo que sigue de esta sección nos dedicaremos a dar una breve descripción de como es que funciona dicho recolector en Ruby.
@@ -497,7 +542,7 @@ Para controlar el acceso a los recursos compartidos por varios thread (exclusió
 \bigskip
 
 
-% RECOLECCIÓN DE BASURA - El porvenir de Ruby 2.0: Bitmap Marking GC
+%% RECOLECCIÓN DE BASURA - El porvenir de Ruby 2.0: Bitmap Marking GC
 \subsection{El porvenir de Ruby 2.0: \textit{Bitmap Marking GC}}
 
 	Ruby es un lenguaje en constante progreso. Tal es así que para la nueva futura versión de esta, \textit{Ruby 2.0}, se ha dado a conocer un cambio muy significativo: un nuevo algoritmo para el recolector de basura llamado \textit{Bitmap Marking}. El desarrollador detrás de este sofisticado e innovador cambio es nuevamente Narigiro Nakamura, quien ha estado trabajando en este desde el 2008.
@@ -505,6 +550,7 @@ Para controlar el acceso a los recursos compartidos por varios thread (exclusió
 	El nuevo algoritmo \textit{Bitmap Marking GC} promete reducir drásticamente el consumo total de memoria de los procesos de Ruby que se ejecutan en un servidor web. Prácticamente hablando, esta nueva implementacion del GC ayudará al MRI de Ruby 2.0 a trabajar mas eficientemente en entornos de producción de servidores web reduciendo el consumo de memoria. 
 	\par
 	El propósito de este apartado es unicamente informativo, por lo que no profundizaremos sobre como es el funcionamiento del nuevo algoritmo\footnote{''Para más información acerca de cómo es que trabaja el ``Bitmap Marking GC'' diríjase a http://patshaughnessy.net/2012/3/23/why-you-should-be-excited-about-garbage-collection-in-ruby-2-0}. 
+
 
 
 
@@ -517,7 +563,7 @@ Para controlar el acceso a los recursos compartidos por varios thread (exclusió
 	\par
 	Rails utiliza el patrón MVC para poder administrar sus recursos. Si bien Java utiliza distintos frameworks también basados en MVC, Rails lleva el concepto mucho mas allá debido a que hay un lugar específico para cada parte del codigo, y cada componente de nuestra aplicación funciona de manera estándar. Es decir, es como si iniciaramos una aplicacion con el esqueleto previamente armado.
 	\par
-	Todas estas potenciales caracteristicas hicieron que Ruby on Rails sea una de las razones por las que el lenguaje de programación Ruby haya logrado un importante impulso, siendo cada vez mas reconocido como una buena opción a la hora de elegir un lenguaje con el que llevar a cabo un proyecto.
+	Todas estas potenciales caracteristicas hicieron que Ruby on Rails sea una de las razones por las que el lenguaje de programación Ruby ha logrado un importante impulso, siendo cada vez mas reconocido como una buena opción a la hora de elegir un lenguaje con el que llevar a cabo un proyecto.
 
 
 
@@ -525,7 +571,7 @@ Para controlar el acceso a los recursos compartidos por varios thread (exclusió
 % APLICACIONES
 \section{Aplicaciones}
 
-Con el paso del tiempo Ruby fue utilizado por un número cada vez mayor de desarrolladores para llevar a cabo proyectos de grande envergadura. A continuación se muestra un listado de aplicaciones\footnote{''Véase una lista mas completa de aplicaciones en los siguientes vínculos: http://rubyonrails.org/applications\\http://www.ruby-lang.org/en/documentation/success-stories''} realizadas en este lenguaje:
+Con el paso del tiempo Ruby fue siendo utilizado por un número cada vez mayor de desarrolladores para llevar a cabo proyectos de grande envergadura. A continuación se muestra un listado de aplicaciones\footnote{''Véase una lista mas completa de aplicaciones en los siguientes vínculos: http://rubyonrails.org/applications\\http://www.ruby-lang.org/en/documentation/success-stories''} realizadas en este lenguaje:
 \bigskip\\
 
 \textbf{Web:}
