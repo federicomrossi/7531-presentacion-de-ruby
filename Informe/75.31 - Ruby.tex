@@ -248,7 +248,7 @@ Los \textit{strings} son simples secuencias de bytes que representan una secuenc
 \bigskip
 
 \subsection{Expresiones regulares}
-Otro punto importante integrado en el lenguaje, y siguiendo los buenos resultados que se obtubieron en PERL, son las \textit{expresiones regulares}. Estas permiten comprobar si una cadena satisface un patrón en particular. En el \textbf{Cuadro 1} se puede observar un listado de los caracteres especiales para su uso.\\
+Otro punto importante integrado en el lenguaje, y siguiendo los buenos resultados que se obtubieron en PERL, son las \textit{expresiones regulares}. Estas permiten comprobar si una cadena satisface un patrón en particular. En el \textit{Cuadro 1} se puede observar un listado de los caracteres especiales para su uso.\\
 
 \begin{table}[!hbt]
 	\begin{center}
@@ -435,31 +435,89 @@ Para controlar el acceso a los recursos compartidos por varios thread (exclusió
 % MANEJO DE MEMORIA
 \section{Manejo de memoria}
 
-	[ Colocar contenido aquí ]
+	En Ruby el manejo de memoria se realiza de forma automática, lo cual es uno de los pilares que sostienen la filosofía del lenguaje: \textit{realizar desarrollos de forma rápida y sencilla}. De esta manera, el programador se desliga de pensar en temas como pérdidas de memoria, lo cual es causa de muchos dolores de cabeza en el desarrollo de aplicaciones en otros lenguajes.
 
 
 % RECOLECCIÓN DE BASURA
-\section{Recolección de basura}
+\subsection{Recolección de basura}
 
-	[ Colocar contenido aquí ]
+	La versión actual más estable de Ruby (\textit{versión 1.9.3}) utiliza el recolector de basura llamado "\textit{Lazy Sweep}", denominado asi por su creador, Narihiro Nakamura. Este no es mas que una implementación del clásico \textit{Mark and Sweep}. En lo que sigue de esta sección nos dedicaremos a dar una breve descripción de como es que funciona dicho recolector en Ruby.
+	\par
+	En Ruby, cada valor string es guardado internamente por la \textit{MRI} (Matz's Ruby Interpreter) en una estructura de C llamada \textit{RString}, abreviatura para ``Ruby String''. Cada estructura \textit{RString} es dividida en dos partes, tal como se muestra en la \textit{Figura 1}.
+\bigskip
 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.29\textwidth]{images/gc/gc01-rstring.png}
+	\caption{Representación gráfica de la estructura \textit{RString}.}
+\end{figure}
+\bigskip
+
+\noindent En la parte inferior tenemos los datos de la cadena en sí, mientras que en la parte superior hemos puesto la palabra \textit{Flags} (banderas) para representar diferentes valores de los metadatos internos acerca de la cadena que es rastreada por Ruby. Resulta que todos los valores utilizados por el programa hecho en Ruby se guardan en estructuras similares a \textit{RString} denominadas \textit{RArray}, \textit{RHash}, \textit{FICH\_R}, etc. Todos ellos comparten el mismo diseño básico: algunos datos y el mismo conjunto de flags. El nombre común para este tipo de estructura, que se comparte entre todos los tipos de objetos internos, es \textit{RValue}, lo que significa ``Ruby Value'' (Valor de Ruby).
+	\par
+	Ruby asigna y organiza estas estructuras \textit{RValue} en conjuntos llamados \textit{heaps}. En la \textit{Figura 2} se muestra un diagrama conceptual del arreglo heap de Ruby, el cual contiene los tres valores de la cadena junto con algunos otros \textit{RValue's}.
+\bigskip
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.55\textwidth]{images/gc/gc02-heap.png}
+	\caption{Diagrama conceptual del arreglo heap de Ruby.}
+\end{figure}
+\bigskip
+
+	A medida que una aplicación hecha en Ruby se ejecuta, siempre que se crea una nueva variable o el valor de algún tipo, el intérprete de Ruby encuentra una estructura \textit{RValue} disponible en el heap y la usa para almacentar el nuevo valor. Por supuesto, todo esto es manejado de forma automática, sin dar problemas a quien se encuentra programando.
+	\par
+	Pero el lector se preguntará: \textit{¿Qué ocurre cuando las estructuras RValue en el heap se acaban, cuando no quedan mas para almacenar nuevos valores requeridos por la aplicación?} En realidad, esto ocurre con mas frecuencia de lo que cabría esperar debido a que hay muchas estructuras \textit{RValue} creadas internamente por Ruby de las cuales no somos conscientes. De hecho, el mismo código del programa es convertido en un gran número de estructuras \textit{RValue}, es parseado y por último, convertido en byte code.
+	\par
+	Cuando no hay mas estructuras \textit{RValue} disponibles y el programa necesita almacenar un valor nuevo, Ruby ejecuta el código del \textit{recolector de basura (GC)}. El trabajo del recolector de basura es encontrar cual de los \textit{RValues} ya no se encuentran referenciados por la aplicación, pudiendo ser reciclado y reutilizado por otro valor. Veámos como funciona a un alto nivel.
+	\par
+	Primeramente, el código del GC ``marca'' todas las estructuras \textit{RValue} activas. Es decir, recorre todas las variables y otras referencias activas que posee el programa como estructuras \textit{RValue}, y marca cada una usando uno de los indicadores internos de flag denominado \textit{FL\_MARK} (\textit{Figura 3}).
+\bigskip
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.25\textwidth]{images/gc/gc03-fl-mark.png}
+	\caption{Marcado de un RValue con el indicador FL\_MARK.}
+\end{figure}
+\bigskip
+	
+	Lo hasta aquí expuesto es solo la mitad de lo que realiza el algoritmo del recolector de basura por marcado y barrido de Ruby. Algo a tener en cuenta es que las estructuras marcadas son usadas activamente por el programa y no pueden ser liberadas o reutilizadas.
+	\par
+	Una vez que todas las estructuras en el sistema están marcadas, las estructuras restantes son barridas hacia una lista simplemente enlazada usando el puntero \textit{Next} de cada estructura \textit{RValue}. En el diagrama de la \textit{Figura 4} se representa el flag de \textit{FL\_MARK} en el arreglo heap con la letra ``M'', y por debajo se puede muestra la lista de los \textit{RValue} sin marcar, denominada la \textit{lista libre}. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{images/gc/gc04-free-list.png}
+	\caption{Marcado de un RValue con el indicador FL\_MARK.}
+\end{figure}
+	
+	Como se ha de imaginar el lector, la lista libre puede ahora ser usada para proveer nuevas estructuras \textit{RValue} al programa, ya que este último nunca se detiene. Ahora, cada vez que el programa hecho en Ruby asigna un nuevo objeto o valor, este usa una estructura \textit{RValue} de la lista libre al mismo tiempo que es removida de dicha lista. Eventualmente, la lista libre se comenzará a vaciar nuevamente y Ruby deberá ejecutar nuevamente el recolector de basura.
+	\par
+	Después de un tiempo puede que no queden estructuras sin marcar en el heap, es decir, todas las \textit{RValues} disponibles puede que estén siendo utilizadas activamente. En esos casos, Ruby asignará un heap nuevo con mas estructuras \textit{RValue}. En realidad, asigna nuevos heaps de diez a la vez. Una aplicación típica de Ruby podría llegar a tener muchos arreglos heap diferentes.
+\bigskip
 
 
 % RECOLECCIÓN DE BASURA - El porvenir de Ruby 2.0: Bitmap Marking GC
 \subsection{El porvenir de Ruby 2.0: \textit{Bitmap Marking GC}}
 
-	[ Colocar contenido aquí ]
-
+	Ruby es un lenguaje el cual se encuentra en constante progreso. Tal es así que para la nueva futura versión de esta, \textit{Ruby 2.0}, se ha dado a conocer un cambio muy significativo: un nuevo algoritmo para el recolector de basura llamado \textit{Bitmap Marking}. El desarrollador detras de este sofisticado e innovador cambio es nuevamente Narigiro Nakamura, quien ha estado trabajando en esto desde el 2008.
+	\par
+	El nuevo algoritmo \textit{Bitmap Marking GC} promete reducir drásticamente el consumo total de memoria de los procesos de Ruby que se ejecutan en un servidor web. Prácticamente hablando, esta nueva implementacion del GC ayudará al MRI de Ruby 2.0 a trabajar mas eficientemente en entornos de producción de servidores web reduciendo el consumo de memoria. 
+	\par
+	El propósito de este apartado es unicamente informativo, por lo que no profundizaremos sobre como es el funcionamiento del nuevo algoritmo\footnote{''Para más información acerca de cómo es que trabaja el ``Bitmap Marking GC'' diríjase a http://patshaughnessy.net/2012/3/23/why-you-should-be-excited-about-garbage-collection-in-ruby-2-0}. 
 
 
 
 % RUBY ON RAILS: UN PUNTO FUERTE DEL LENGUAJE
 \section{\textit{Ruby On Rails}: un punto fuerte del lenguaje}
 
-En la actualidad, Ruby se ha popularizado en el mundo del desarrollo de las aplicaciones webs a través del framework \textit{Ruby On Rails}, o mas comúnmente conocido como \textit{Rails}, escrito en este mismo lenguaje.\par
-Ruby on Rails nace como un framework de desarrollo web especialmente diseñado con un fin en particular: hacer la vida más fácil a las personas que desarrollan aplicaciones destinadas a la web. Muchas de estas personas quiza se sientan frustradas con tecnologias como PHP, Java o .NET, que si bien son buenas, conllevan problemas de carga de recursos y una complejidad innecesaria. Ruby on Rails es simplemente más sencillo.\par
- Rails utiliza el patrón MVC para poder administrar sus recursos. Si bien Java utiliza distintos frameworks también basados en MVC, Rails lleva el concepto mucho mas allá debido a que hay un lugar específico para cada parte del codigo, y cada componente de nuestra aplicación funciona de manera estándar. Es decir, es como si iniciaramos una aplicacion con el esqueleto previamente armado.\par
-Todas estas potenciales caracteristicas hicieron que Ruby on Rails sea una de las razones por las que el lenguaje de programación Ruby haya logrado un importante impulso, siendo cada vez mas reconocido como una buena opción a la hora de elegir un lenguaje con el que llevar a cabo un proyecto.
+	En la actualidad, Ruby se ha popularizado en el mundo del desarrollo de las aplicaciones webs a través del framework \textit{Ruby On Rails}, o mas comúnmente conocido como \textit{Rails}, escrito en este mismo lenguaje.
+	\par
+	Ruby on Rails nace como un framework de desarrollo web especialmente diseñado con un fin en particular: hacer la vida más fácil a las personas que desarrollan aplicaciones destinadas a la web. Muchas de estas personas quiza se sientan frustradas con tecnologias como PHP, Java o .NET, que si bien son buenas, conllevan problemas de carga de recursos y una complejidad innecesaria. Ruby on Rails es simplemente más sencillo.
+	\par
+	Rails utiliza el patrón MVC para poder administrar sus recursos. Si bien Java utiliza distintos frameworks también basados en MVC, Rails lleva el concepto mucho mas allá debido a que hay un lugar específico para cada parte del codigo, y cada componente de nuestra aplicación funciona de manera estándar. Es decir, es como si iniciaramos una aplicacion con el esqueleto previamente armado.
+	\par
+	Todas estas potenciales caracteristicas hicieron que Ruby on Rails sea una de las razones por las que el lenguaje de programación Ruby haya logrado un importante impulso, siendo cada vez mas reconocido como una buena opción a la hora de elegir un lenguaje con el que llevar a cabo un proyecto.
 
 
 
@@ -473,33 +531,33 @@ Con el paso del tiempo Ruby fue utilizado por un número cada vez mayor de desar
 \textbf{Web:}
 \begin{itemize}
 	\itemsep=1pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
-	\item Twitter (http://www.twitter.com)
-	\item Shopify (http://www.shopify.com)
-	\item Groupon (http://www.groupon.com)
-	\item XING (http://www.xing.com)
+	\item Twitter (\textit{http://www.twitter.com})
+	\item Shopify (\textit{http://www.shopify.com})
+	\item Groupon (\textit{http://www.groupon.com})
+	\item XING (\textit{http://www.xing.com})
 \end{itemize}
 \medskip
 
 \textbf{Simulaciones:}
 \begin{itemize}
 	\itemsep=1pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
-	\item \textit{NASA Langley Research Center} usa Ruby para llevar a cabo simulaciones. (http://www.larc.nasa.gov)
-	\item Motorola (http://www.motorola.com)
+	\item NASA Langley Research Center: usa Ruby para llevar a cabo simulaciones. (\textit{http://www.larc.nasa.gov})
+	\item Motorola (\textit{http://www.motorola.com})
 \end{itemize}
 \medskip
 
 \textbf{Modelado 3D:}
 \begin{itemize}
 	\itemsep=1pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
-	\item Google SketchUp (http://sketchup.google.com)
+	\item Google SketchUp: SketchUp incluye una interfaz de programación de aplicaciones (API) para usuarios familiarizados con Ruby que deseen ampliar las funciones de SketchUp. Esta interfaz permite crear herramientas, opciones de menú y otros complementos, como generadores automáticos de componentes, que se incluirán en los menús de SketchUp. (\textit{http://sketchup.google.com})
 \end{itemize}
 \medskip
 
 \textbf{Telecomunicaciones:}
 \begin{itemize}
 	\itemsep=1pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
-	\item \textit{Open Domain Server}: permitir a los usuarios el uso de DNS dinámicos (http://ods.org)
-	\item \textit{Lucent}: uso en producto de telefonía wireless 3G (http://www.lucent.com)
+	\item Open Domain Server (ODS): permitir a los usuarios el uso de DNS dinámicos. (\textit{http://ods.org})
+	\item Lucent: uso en producto de telefonía wireless 3G. (\textit{http://www.lucent.com})
 \end{itemize}
 \medskip
 
