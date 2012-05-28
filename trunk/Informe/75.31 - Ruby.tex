@@ -476,6 +476,18 @@ Los métodos siempre devuelven un valor, el que corresponde a la última sentenc
 \lstinputlisting[label=code:sintaxis_metodos_03,caption=``Alto orden utilizando métodos'']{codes/sintaxis_metodos_03.txt} 
 
 
+%%% MÉTODOS SINGLETON
+\subsubsection{Métodos Singleton}
+
+	El comportamiento de una instancia es determinado por su clase, pero hay momentos en los que es necesario que una instancia en particular posea un comportamiento especial. En la mayoría de los lenguajes deberíamos adentrarnos en la problematica de definir una nueva clase, la cual será instanciada una sola vez. En cambio, Ruby permite dar a cualquier objeto sus propios métodos.
+
+% Código
+\lstinputlisting[label=code:code1,caption=``Métodos Singleton ejecutado en la consola'']{codes/code1.consola} 
+\bigskip
+
+	En el \refcode{code:code1}, las instancias \textit{test1} y \textit{test2} pertenecen a la misma clase, pero en \textit{test2} se ha redefinido el método \textit{size} por lo que se comportará de forma diferente. Un método que pertenece sólo a un único objeto se denomina \textit{Método Singleton}.
+
+
 %% BLOQUES Y FUNC
 \subsection{Bloques y Func}
 
@@ -537,20 +549,6 @@ Las exceptions se representan en una jerarquia de objetos que heredan de Standar
 
 En Ruby se añade, por convención, \textit{!} o \textit{?} al final de ciertos nombre de métodos.  La marca de exclamación (!, pronunciada como un “bang!” sonoro)  recalca algo potencialmente peligroso, es decir, algo que puede modificar el valor de lo que toca. El método de la clase cadena chop! afecta directamente a la cadena pero chop sin el signo de exclamación actúa sobre una copia.
 Los nombres de métodos que finalizan con un signo de interrogación (?, pronunciada a veces como un “huh?” sonoro) indica que el método es un “predicado”, aquel que puede devolver o true o false.
-
-
-
-
-% MÉTODOS SINGLETON
-\section{Métodos Singleton}
-
-	El comportamiento de una instancia es determinado por su clase, pero hay momentos en los que es necesario que una instancia en particular posea un comportamiento especial. En la mayoría de los lenguajes deberíamos adentrarnos en la problematica de definir una nueva clase, la cual será instanciada una sola vez. En cambio, Ruby permite dar a cualquier objeto sus propios métodos.
-
-% Código
-\lstinputlisting[label=code:code1,caption=``Métodos Singleton ejecutado en la consola'']{codes/code1.consola} 
-\bigskip
-
-	En el \refcode{code:code1}, las instancias \textit{test1} y \textit{test2} pertenecen a la misma clase, pero en \textit{test2} se ha redefinido el método \textit{size} por lo que se comportará de forma diferente. Un método que pertenece sólo a un único objeto se denomina \textit{Método Singleton}.
 
 
 
