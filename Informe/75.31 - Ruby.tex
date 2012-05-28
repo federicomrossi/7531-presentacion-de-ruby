@@ -449,6 +449,8 @@ Se pueden utilizar Symbols para proveer acceso de lectura o escritura sobre los 
 \lstinputlisting[label=code:sintaxis_clases_05,caption=`Properties"]{codes/sintaxis_clases_05.rb} 
 \bigskip
 
+Para obtener una combinacion de ambos, es decir darle a un atributo los dos modificadores de acceso, se utiliza \textit{attr\_accesor}
+
 %% VARIABLES
 \subsection{Variables}
 En ruby las variables son referencias a valores en memoria. Cuando se asigna una variable a otra, no se duplica el objeto. Para duplicar objetos se puede utilizar los métodos clone o dup que son de Object.
@@ -498,6 +500,29 @@ Un objeto procedimiento nuevo se obtiene utilizando la palabra reservada \textit
 \lstinputlisting[label=code:sintaxis_bloques&proc_05,caption=``Función lambda'']{codes/sintaxis_bloques&proc_05.txt} 
 \bigskip
 
+%% Exceptions
+\subsection{Exceptions}
+
+Una exception es una de las formas que los programdadores tienen para capturar errores. 
+El siguiente código es un ejemplo de una exception lanzada por un usuario. En este caso el error es generado pero no es capturado. En casos donde los errores no son capturador, ruby es el que captura como ultimo recurso. En estos casos el error se reporta y el programa es abortado
+
+% Código
+\lstinputlisting[label=codesintaxis_exception_01,caption=``Lanzando una exception'']{codes/sintaxis_exception_01.rb} 
+\bigskip
+
+Para capturar exceptions ruby provee la instrucción clause. El programador deve declarar el bloque (begin .. end) donde se capturan las exceptions. Si la exception no es capturada se puede agregar una sentencia que se ejecute en ese caso utilizando un else como se muestra en el siguiente ejemplo. 
+
+% Código
+\lstinputlisting[label=codesintaxis_exception_02,caption=``Capturando una exception'']{codes/sintaxis_exception_02.rb} 
+\bigskip
+
+Para asegurar que se ejeucte una sentencia siempre se utiliza la clausula ensure como se muestra en el siguiente código:
+
+% Código
+\lstinputlisting[label=codesintaxis_exception_03,caption=``Clausula ensure'']{codes/sintaxis_exception_03.rb} 
+\bigskip
+
+Las exceptions se representan en una jerarquia de objetos que heredan de Standard Error. 
 
 %% ESTRUCTURAS DE CONTROL
 \subsection{Estructuras de control}
