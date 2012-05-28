@@ -1,0 +1,13 @@
+Class C
+  public
+  def a1 ()              # public
+  def a2 ()              # public
+                        
+  private               
+  def b1 ()              # private
+  def b2 ()              # private
+                        
+  protected             
+  def c1 ()              # protected
+  def c2 ()              # protected
+end

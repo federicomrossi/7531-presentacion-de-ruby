@@ -7,3 +7,5 @@ class B < A
     p (@@cvar)                  
   end
 end
+
+

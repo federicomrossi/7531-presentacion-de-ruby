@@ -396,7 +396,7 @@ A continuación, en el código \refcode{code:sintaxis_arrays_01}, se muestran ej
 Conocidos también como diccionarios (aunque en el mundo ruby se prefiere el nombre hash), representan las Hash Table que son una colección indexada de datos accedidos por una clave. Son una implementación de búsqueda muy eficiente y son extensivamente utilizados en la construcción del lenguaje Ruby. A continuación se exponen ejemplos de uso de los mismos.
 
 % Código
-\lstinputlisting[label=code:sintaxis_hash_01,caption="Hash"]{codes/sintaxis_hash_01.rb} 
+\lstinputlisting[label=code:sintaxis_hash_01,caption=``Hash"]{codes/sintaxis_hash_01.rb} 
 \bigskip
 
 %% SYMBOLS
@@ -404,13 +404,13 @@ Conocidos también como diccionarios (aunque en el mundo ruby se prefiere el nom
 Symbols son la alternativa de las constantes para crear nombres (simbolos) que representen un único valor.  En el ejemplo mostrado en  \refcode{code:sintaxis_symbols_01}  se expone este concepto: "el valor no importa, importa el significado".
 
 % Código
-\lstinputlisting[label=code:sintaxis_symbols_01,caption="Hash"]{codes/sintaxis_symbols_01.rb} 
+\lstinputlisting[label=code:sintaxis_symbols_01,caption=``Symbols"]{codes/sintaxis_symbols_01.rb} 
 \bigskip
 
 Las claves de los Hash podrian ser Symbols. De esta manera se asegura que son únicas, puesto que los Symbols siempre tienen valores únicos y son garantia que mantienen esta cualidad durante todo el programa. El siguiente código de ejemplo muestra este uso.
 
 % Código
-\lstinputlisting[label=code:sintaxis_symbols_02,caption="Hash"]{codes/sintaxis_symbols_02.rb} 
+\lstinputlisting[label=code:sintaxis_symbols_02,caption=``Symbols"]{codes/sintaxis_symbols_02.rb} 
 \bigskip
 
 %% Clases
@@ -423,14 +423,30 @@ Las variables de instancia, se identifican con un '@'.
 Cuando un objeto es creado con new, ruby invoca a initialize. El codigo  en  \refcode{code:sintaxis_clases_01} muestra las caracteristicas descriptas hasta este momento.
 
 % Código
-\lstinputlisting[label=code:sintaxis_clases_01,caption="Hash"]{codes/sintaxis_clases_01.rb} 
+\lstinputlisting[label=code:sintaxis_clases_01,caption=``Definicion de clases y variables de instancia"]{codes/sintaxis_clases_01.rb} 
 \bigskip
 
 Ruby soporta herencia, de manera tal que una clase pueda heredar metodos y atributos de otra. 
-Tambien soporta variables de clase las cuales son variables alcanzables por todas las intancias de clases. El codigo  en  \refcode{code:sintaxis_clases_01} muestra la sintaxis de la herencia y de las variables de clase.
+Tambien soporta variables de clase las cuales son variables alcanzables por todas las intancias de clases. Si las variables de clase no son inicializadas, se lanza una excepción.  El código  en  \refcode{code:sintaxis_clases_01} muestra la sintaxis de la herencia y de las variables de clase. 
 
 % Código
-\lstinputlisting[label=code:sintaxis_clases_01,caption="Hash"]{codes/sintaxis_clases_02.rb} 
+\lstinputlisting[label=code:sintaxis_clases_02,caption=``Herencia y variables de clase"]{codes/sintaxis_clases_02.rb} 
+\bigskip
+
+Rubi permite utilizar modificadores de acceso: Public, Protected y Private. El codigo en \refcode{code:sintaxis_clases_03} y \refcode{code:sintaxis_clases_04} muestra las distintas sintaxis.
+
+% Código
+\lstinputlisting[label=code:sintaxis_clases_03,caption=``Modificadores de acceso"]{codes/sintaxis_clases_03.txt} 
+\bigskip
+
+% Código
+\lstinputlisting[label=code:sintaxis_clases_04,caption=``Modificadores de acceso"]{codes/sintaxis_clases_04.rb} 
+\bigskip
+
+Se pueden utilizar Symbols para proveer acceso de lectura o escritura sobre los atributos de una clase utilizando las key words \textit{attr\_reader} y \textit{attr\_writer} como se muestra en \refcode{code:sintaxis_clases_05}.   
+
+% Código
+\lstinputlisting[label=code:sintaxis_clases_05,caption=`Properties"]{codes/sintaxis_clases_05.rb} 
 \bigskip
 
 %% VARIABLES
