@@ -8,7 +8,7 @@ for page in pages
 
     h = Net::HTTP.new(myPage, 80)
     puts "Fetching: #{myPage}"
-    resp, data = h.get('/', nil )
+    resp, data = h.get('/')
     puts "Got #{myPage}:  #{resp.message}"
   }
 end

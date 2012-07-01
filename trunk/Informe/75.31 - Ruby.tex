@@ -110,7 +110,8 @@
 % INTRODUCCIÓN
 \section{Introducción: \textit{Enfoque de la presentación}}
 
-La presentación, como así también el presente informe, tienen como fin mostrar a los oyentes este veterano, y a la vez moderno lenguaje de programación desde un punto de vista diferente al que generalmente se acostumbra. Es nuestro objetivo el dar a conocer las fortalezas y debilidades de éste fijando la perspectiva de la presentación en las aplicaciones cotidiantas del lenguaje en el desarrollo de proyectos profesionales. Es decir, sin quitar importancia a tópicos importantes como la sintaxis, nos focalizaremos en detallar aquellas caracteristicas que hacen de Ruby un lenguaje interesante y ávido de nuevos conceptos.
+La presentación, como así también el presente informe, tienen como fin mostrar este veterano, y a la vez moderno lenguaje de programación desde un punto de vista diferente al que generalmente se acostumbra. Es nuestro objetivo el dar a conocer las fortalezas y debilidades de éste fijando la perspectiva de la presentación en las aplicaciones cotidiantas del lenguaje en el desarrollo de proyectos profesionales. Es decir, sin quitar importancia a tópicos importantes como la sintaxis, nos focalizaremos en detallar aquellas caracteristicas que hacen de Ruby un lenguaje interesante y ávido de nuevos conceptos.
+\bigskip
 
 
 
@@ -118,20 +119,21 @@ La presentación, como así también el presente informe, tienen como fin mostra
 % Un poco de historia
 \section{Un poco de historia}
 
-Ruby fue creado por \textit{Yukihiro ``Matz'' Matsumoto}. Matz comenzó a trabajar en Ruby en 1993, cuando tenia 28 años, mientras trabajaba para una empresa Open source (netlab.jp). Ya por ese entonces era muy conocido en Japón por tener un alto perfil de evangelista dentro de la comunidad Open source y por trabajar en varios productos Open source. Ruby es el primer software japones altamente conocido fuera de Japón, el cual fue presentado en 1995.
+Ruby fue creado por \textit{Yukihiro ``Matz'' Matsumoto}. Matz comenzó a trabajar en Ruby en 1993, cuando tenia 28 años, mientras trabajaba para una empresa Open source (netlab.jp). Ya por ese entonces era muy conocido en Japón por tener un alto perfil de evangelista dentro de la comunidad Open source y por trabajar en varios productos Open source. Ruby es el primer software japonés altamente conocido fuera de Japón, el cual fue presentado en 1995.
 
 \begin{quotation}
 \em``En 1993, yo estaba hablando con un colega acerca de lenguajes de scripting. Estaba muy impresionado por su poder y sus posibilidades. Sentía que el scripting era el camino a seguir.
 	\par
 	Me pareció que la programación orientada a objetos (POO) era muy adecuada para secuencias de comandos también (como viejo fan de la POO). Luego miré alrededor de la red. Me encontré con que Perl 5, que no se había lanzado todavía, implementaría las características de OO, pero  finalmente no resultó lo que esperába. Me di por vencido en creer en Perl como lenguaje de scripts orientado a objetos.
 	\par
-	Entonces me encontré con Python. Se trataba de un interprete y un lenguaje orientado a objetos. Pero no lo sentía como si fuera un "script" del lenguaje. Además, se trataba de un lenguaje híbrido de la programación de procedural y la programación orientada a objetos.
+	Entonces me encontré con Python. Se trataba de un interprete y un lenguaje orientado a objetos. Pero no lo sentía como si fuera un ``script'' del lenguaje. Además, se trataba de un lenguaje híbrido de la programación de procedural y la programación orientada a objetos.
 	\par
 	Yo quería un lenguaje que fuera más poderoso que Perl, y más orientado a objetos que Python. Es por eso que me decidí a diseñar mi propio Lenguaje de programación''
 \begin{flushright} Yukihiro Matsumoto (a.k.a. “Matz”)\end{flushright}
 \end{quotation}  
 
-Es así que comenzó a desarrollarlo el 24 de febrero de 1993 y en agosto desarrollo el primer Hello World con ruby. En 1994 se lanzó la primer versión alpha. Matz trabajó solo hasta el año 1996, momento en el cuál se formo la primer comunidad de Ruby.
+Es así que comenzó a desarrollarlo el 24 de febrero de 1993 y en agosto desarrolló el primer Hello World con \textit{Ruby}. En 1994 se lanzó la primer versión alpha. Matz trabajó solo hasta el año 1996, momento en el cuál se formo la primer comunidad de \textit{Ruby}.
+\bigskip
 
 
 
@@ -139,13 +141,13 @@ Es así que comenzó a desarrollarlo el 24 de febrero de 1993 y en agosto desarr
 % ¿QUE ES RUBY?
 \section{¿Qué es Ruby?}
 
-	Ruby es un lenguaje de programación interpretado, reflexivo\footnote{La reflexión es una actividad computacional que razona sobre su propia computación. Es decir, si un sistema soporta reflexión, se preserva la estructura del programa como metadatos (datos que describen otros datos) en el código generado.} y orientado a objetos, el cual fue escrito en \textit{C} y fue diseñado teniendo en mente las capacidades de \textit{Perl} y \textit{Phyton}, con características de POO similares a \textit{Smalltalk}.
+	\textit{Ruby} es un lenguaje de programación interpretado, reflexivo\footnote{La reflexión es una actividad computacional que razona sobre su propia computación. Es decir, si un sistema soporta reflexión, se preserva la estructura del programa como metadatos (datos que describen otros datos) en el código generado.} y orientado a objetos, el cual fue escrito en \textit{C} y fue diseñado teniendo en mente las capacidades de \textit{Perl} y \textit{Phyton}, con características de POO similares a \textit{Smalltalk}.
+\bigskip
 
 
 
-
-% EL LENGUAJE Y SUS PRINCIPIOS
-\section{El lenguaje y sus Principios}
+%% EL LENGUAJE Y SUS PRINCIPIOS
+\subsection{El lenguaje y sus Principios}
 	
 	Antes de iniciarnos en la sintaxis del lenguaje creemos necesario entender el por qué es que fue creado Ruby, es decir, entender el impacto que su creador deseaba que tuviera y las razones por las cuales conforma una forma muy particular de realizar aplicaciones.
 	\par
@@ -200,16 +202,17 @@ Sin duda, Ruby fue diseñado para hacer a los programadores mas productivos y fe
 \begin{flushright} Yukihiro Matsumoto (a.k.a. “Matz”), 2000 \end{flushright}
 \end{quotation}
 
-\bigskip
+\newpage
 ¿Cuáles son los principios de una buena interfaz de usuario? Estos son los tres principios con citas de apoyo por parte de Matz:\\
 
 \begin{quotation}
 \noindent \textbf{Principio de concisión:} \textit{``Quiero que las computadoras sean mis siervos, no mis maestros. Por lo tanto, me gustaría darles órdenes rápidamente. Un buen siervo debe hacer un montón de trabajo con una breve orden.''}\\
 
-\noindent \textbf{Principio de consistencia:} \textit{``... un pequeño conjunto de normas cubre la totalidad del lenguaje Ruby. Ruby es un lenguaje relativamente sencillo, pero no es demasiado simple. He tratado de seguir el principio de \textit{sin sorpresas}. Ruby no es demasiado único, por lo que un programador con conocimientos básicos de otros lenguajes de programación puede aprender muy rápidamente.''}\\
+\noindent \textbf{Principio de consistencia:} \textit{``... un pequeño conjunto de normas cubre la totalidad del lenguaje Ruby. Ruby es un lenguaje relativamente sencillo, pero no es demasiado simple. He tratado de seguir el principio de ``sin sorpresas''. Ruby no es demasiado único, por lo que un programador con conocimientos básicos de otros lenguajes de programación puede aprender muy rápidamente.''}\\
 
 \noindent \textbf{Principio de flexibilidad:} \textit{``Porque las lenguas son para expresar el pensamiento, una lengua no debe restringir el pensamiento humano, sino que debe ayudarlo. Ruby consiste en un núcleo pequeño inmutable (es decir, sintaxis) y bibliotecas arbitrarias de clases extensibles...''}
 \end{quotation}
+\bigskip
 
 
 
@@ -217,12 +220,16 @@ Sin duda, Ruby fue diseñado para hacer a los programadores mas productivos y fe
 % SINTAXIS
 \section{Sintaxis básica}
 
-	Ha llegado el momento de conocer la sintaxis de Ruby. El lector será capaz de notar una simpleza extrema de esta, lo que no significa una deficiencia en su potencial. Es decir, veremos que a partir de un número muy acotado de lineas de código seremos capaces de realizar programas realmente interesantes.
+	Ha llegado el momento de conocer la sintaxis de Ruby. El lector será capaz de notar una simpleza extrema de esta, lo que no significa una deficiencia en su potencial. Es decir, veremos que a partir de un número muy acotado de líneas de código seremos capaces de realizar programas realmente interesantes.
+\bigskip
+
 
 
 %% TIPOS
 \subsection{Tipos}
 Todos los tipos de ruby heredan de la clase Object, es decir que todos los tipos en ruby son objetos. Existen clases ya construidas que representan los tipos básicos de ruby sobre los cuales se construyen los bloques de todos los programas que se desarrollan en ruby.
+\bigskip
+
 
 
 %% TIPOS NUMÉRICOS 
@@ -233,7 +240,7 @@ Los números enteros son creados ingresando el número sin coma. El formato de r
 
 % Código
 \lstinputlisting[label=code:sintaxis_tipo_01,caption=``Tipos Numéricos'']{codes/sintaxis_tipo_01.rb} 
-\bigskip
+\bigskip\bigskip
 
 	En el \refcode{code:sintaxis_tipo_01}, se pueden ver los tipos numércos básicos que encontramos en cualquier lenguaje. Debajo de estos se encuentran sus particulares al ser objetos y no ser simplemente "tipos nativos". Existen otras representaciones numéricas como los números imaginarios (\textit{Complex}). En las secciones siguientes se verán el detalle el resto de los tipos básicos de ruby: \textit{Strings} y \textit{Collections}.
 	\par
@@ -248,6 +255,7 @@ Ahora, notemos que si calculamos el factorial de cualquier número (\refcode{cod
 % Código
 \lstinputlisting[label=code:sintaxis_tipo_factorial_console,caption=``Factorial'']{codes/sintaxis_tipo_factorial.console} 
 \bigskip
+
 
 
 %% STRINGS
@@ -287,6 +295,7 @@ Ahora, notemos que si calculamos el factorial de cualquier número (\refcode{cod
 % Código
 \lstinputlisting[label=code:sintaxis_strings_04,caption=``Delimitadores de strings'']{codes/sintaxis_strings_04.rb} 
 \bigskip
+
 
 
 %% EXPRESIONES REGULARES
@@ -372,6 +381,7 @@ Otro punto importante integrado en el lenguaje, y siguiendo los buenos resultado
 \bigskip
 
 
+
 %%% COLECCIONES: Rangos
 \subsubsection{Colecciones: \textit{Rangos}}
 La colección más primitiva de todas es el rango que permite representar una colección secuencial de valores (números o letras secuenciales)
@@ -381,6 +391,7 @@ Existen tres usos de los rangos:  para secuencias (en la cual se genera una seri
 % Código
 \lstinputlisting[label=code:sintaxis_rangos_01,caption=``Rangos'']{codes/sintaxis_rangos_01.rb} 
 \bigskip
+
 
 
 %%% COLECCIONES: Arrays
@@ -399,6 +410,8 @@ Conocidos también como diccionarios (aunque en el mundo ruby se prefiere el nom
 \lstinputlisting[label=code:sintaxis_hash_01,caption=``Hash"]{codes/sintaxis_hash_01.rb} 
 \bigskip
 
+
+
 %% SYMBOLS
 \subsection{Symbols}
 Symbols son la alternativa de las constantes para crear nombres (simbolos) que representen un único valor.  En el ejemplo mostrado en  \refcode{code:sintaxis_symbols_01}  se expone este concepto: "el valor no importa, importa el significado".
@@ -413,7 +426,9 @@ Las claves de los Hash podrian ser Symbols. De esta manera se asegura que son ú
 \lstinputlisting[label=code:sintaxis_symbols_02,caption=``Symbols"]{codes/sintaxis_symbols_02.rb} 
 \bigskip
 
-%% Clases
+
+
+%% CLASES
 \subsection{Clases}
 
 Una clase es definida por la palabra reservada class seguida por el identificador de la clase. La definición de la clsae termina con end.
@@ -450,6 +465,9 @@ Se pueden utilizar Symbols para proveer acceso de lectura o escritura sobre los 
 \bigskip
 
 Para obtener una combinacion de ambos, es decir darle a un atributo los dos modificadores de acceso, se utiliza \textit{attr\_accesor}
+\bigskip
+
+
 
 %% VARIABLES
 \subsection{Variables}
@@ -459,6 +477,8 @@ Las variables pueden tener alcance global, local (dadas por cualquier bloque: bl
 % Código
 \lstinputlisting[label=code:sintaxis_variables_01,caption="Variables"]{codes/sintaxis_variables_01.rb} 
 \bigskip
+
+
 
 %% MÉTODOS
 \subsection{Métodos}
@@ -474,6 +494,8 @@ Los métodos siempre devuelven un valor, el que corresponde a la última sentenc
 
 % Código
 \lstinputlisting[label=code:sintaxis_metodos_03,caption=``Alto orden utilizando métodos'']{codes/sintaxis_metodos_03.txt} 
+\bigskip
+
 
 
 %%% MÉTODOS SINGLETON
@@ -486,6 +508,8 @@ Los métodos siempre devuelven un valor, el que corresponde a la última sentenc
 \bigskip
 
 	En el \refcode{code:code1}, las instancias \textit{test1} y \textit{test2} pertenecen a la misma clase, pero en \textit{test2} se ha redefinido el método \textit{size} por lo que se comportará de forma diferente. Un método que pertenece sólo a un único objeto se denomina \textit{Método Singleton}.
+\bigskip
+
 
 
 %% BLOQUES Y FUNC
@@ -512,8 +536,10 @@ Un objeto procedimiento nuevo se obtiene utilizando la palabra reservada \textit
 \lstinputlisting[label=code:sintaxis_bloques&proc_05,caption=``Función lambda'']{codes/sintaxis_bloques&proc_05.txt} 
 \bigskip
 
-%% Exceptions
-\subsection{Exceptions}
+
+
+%% EXCEPCIONES
+\subsection{Excepciones}
 
 Una exception es una de las formas que los programdadores tienen para capturar errores. 
 El siguiente código es un ejemplo de una exception lanzada por un usuario. En este caso el error es generado pero no es capturado. En casos donde los errores no son capturador, ruby es el que captura como ultimo recurso. En estos casos el error se reporta y el programa es abortado
@@ -535,6 +561,9 @@ Para asegurar que se ejeucte una sentencia siempre se utiliza la clausula ensure
 \bigskip
 
 Las exceptions se representan en una jerarquia de objetos que heredan de Standard Error. 
+\bigskip
+
+
 
 %% ESTRUCTURAS DE CONTROL
 \subsection{Estructuras de control}
@@ -544,11 +573,13 @@ Las exceptions se representan en una jerarquia de objetos que heredan de Standar
 \bigskip
 
 
+
 %% CONVENCIÓN DE NOMBRES
 \subsection{Convención de nombres}
 
 En Ruby se añade, por convención, \textit{!} o \textit{?} al final de ciertos nombre de métodos.  La marca de exclamación (!, pronunciada como un “bang!” sonoro)  recalca algo potencialmente peligroso, es decir, algo que puede modificar el valor de lo que toca. El método de la clase cadena chop! afecta directamente a la cadena pero chop sin el signo de exclamación actúa sobre una copia.
 Los nombres de métodos que finalizan con un signo de interrogación (?, pronunciada a veces como un “huh?” sonoro) indica que el método es un “predicado”, aquel que puede devolver o true o false.
+\bigskip
 
 
 
@@ -567,6 +598,8 @@ Los nombres de métodos que finalizan con un signo de interrogación (?, pronunc
 	Analizando las sutilezas que esconde el codigo podemos decir que los threads son creados haciendo la llamada \textit{Thread.new}. Esta recibe un bloque que contiene el código que sera ejecutado por el thread. En este caso el bloque utiliza la libreria \textit{net/http}.
 	\par
 	Cuando creamos un thread, estamos pasando la pagina web requerida como parametro. Luego este parametro es pasado dentro del bloque como myPage.
+\bigskip
+
 
 
 %% MANIPULANDO THREADS
@@ -575,6 +608,8 @@ Los nombres de métodos que finalizan con un signo de interrogación (?, pronunc
 	En el código anterior vemos que un metodo que se invoca de cada thread es join. Cuando un programa en Ruby termina, se matan todos los threads sin tener en cuenta su estado. Join sirve para esperar que termine su ejecución un thread particular, de esta forma el codigo que vimos se asegura que terminen los 3 threads que se lanzaron.
 	\par
 	Además de join hay otros métodos, como por ejemplo \textit{Thread.current} obtiene el thread actual. Para obtener una lista de todos los threads en ejecución o parados se ejecuta Thread.list. Para saber el estado de un thread se puede ejecutar \textit{thread.status} o \textit{thread.alive}.
+\bigskip
+
 
 
 %% VARIABLES DE THREADS
@@ -584,6 +619,7 @@ Un thread puede acceder a cualquier variable que se encuentre en el alcance dond
 % Código
 \lstinputlisting[label=code:multithreading_02,caption=``Variables de threads'']{codes/multithreading_02.txt} 
 \bigskip
+
 
 
 %% SEMÁFOROS
@@ -606,6 +642,8 @@ Para controlar el acceso a los recursos compartidos por varios thread (exclusió
 \section{Manejo de memoria}
 
 	En Ruby el manejo de memoria se realiza de forma automática, lo cual es uno de los pilares que sostienen la filosofía del lenguaje: \textit{realizar desarrollos de forma rápida y sencilla}. De esta manera, el programador se desliga de pensar en temas como pérdidas de memoria, lo cual es causa de muchos dolores de cabeza en el desarrollo de aplicaciones en otros lenguajes.
+\bigskip
+
 
 
 %% RECOLECCIÓN DE BASURA
@@ -667,6 +705,7 @@ Para controlar el acceso a los recursos compartidos por varios thread (exclusió
 \bigskip
 
 
+
 %% RECOLECCIÓN DE BASURA - El porvenir de Ruby 2.0: Bitmap Marking GC
 \subsection{El porvenir de Ruby 2.0: \textit{Bitmap Marking GC}}
 
@@ -675,33 +714,48 @@ Para controlar el acceso a los recursos compartidos por varios thread (exclusió
 	El nuevo algoritmo \textit{Bitmap Marking GC} promete reducir drásticamente el consumo total de memoria de los procesos de Ruby que se ejecutan en un servidor web. Prácticamente hablando, esta nueva implementacion del GC ayudará al MRI de Ruby 2.0 a trabajar mas eficientemente en entornos de producción de servidores web reduciendo el consumo de memoria. 
 	\par
 	El propósito de este apartado es unicamente informativo, por lo que no profundizaremos sobre como es el funcionamiento del nuevo algoritmo\footnote{''Para más información acerca de cómo es que trabaja el ``Bitmap Marking GC'' diríjase a http://patshaughnessy.net/2012/3/23/why-you-should-be-excited-about-garbage-collection-in-ruby-2-0}. 
+\bigskip
 
 
-%EL INTERPRETE DE RUBY
+
+
+% EL INTERPRETE DE RUBY
 \section{El interprete de Ruby}
 
 Como lo enunciamos en el comienzo del informe, Ruby es un lenguaje de scripts interpretado para una programación orientada a objetos rápida y sencilla. En esos principios (ver sección 4) son en los que se centro Matz en su rol de diseñador de lenguaje de programación Ruby. Matz implemento el primer interprete de ruby sin preocuparse demasiado por los problemas de performance y priorizando los principios de diseño de lenguaje de Ruby. A medida que el lenguaje se fue populrizando se tomo más en serio el problema de performance general debido al interprete.
 
-\subsection{MRI: El primer interprete}
+
+%% MRI: El primer interprete
+\subsection{MRI: El primer intérprete}
 
 La crítica más habitual de Ruby es el pobre rendimiento del intérprete frente a otros lenguajes rivales. Las cifras indican que por lo general para un mismo algoritmo el intérprete de Ruby ofrece un menor rendimiento que Python, PHP, Perl ... pudiendo poner en la lista cualquiera de los lenguajes más populares.
 
  El intérprete de Ruby escrito por Matz, conocido como MRI (de Matz Reference Implementation, o Implementación de Referencia de Matz) adolece de no pocos problemas (hay quien afirma que un lenguaje como C no es buena elección a la hora de implementar lenguajes dinámicos)
 
 En todo caso, la comunidad de Rubistas (con Matz a la cabeza) hace tiempo que ha asumido el problema de rendimiento en la MRI y han surgido no pocos proyectos para corregir esta deficiencia. Uno de los problemas con los que se enfrentan los valientes que desean implementar un lenguaje es que el lenguaje Ruby no dispone de una especificación funcional. Por tanto, la única fuente fiable de documentación sobre los entresijos del lenguaje Ruby es el estudio del código fuente en C del intérprete escrito por Matz (de ahí el nombre MRI)
+\bigskip
 
 
+
+%% YARV (o KRI)
 \subsection{YARV (o KRI)}
 
 YARV (yeat another ruby interprete) de Sasada Koich es  la reimplementación de Ruby usando su propia máquina virtual y un compilador a código de bytes. El trabajo de Sasada Koichi, basado en un enfoque más moderno que la implementación de Matz, es tan brillante que forma parte de las versiones oficiales 1.9.x de Ruby. Aún hay algún trabajo por hacer con el problema de performance de Ruby pero cabe destacar que, por lo general, una aplicación Rails verá mejoras de rendimiento del 15% sólo por usar YARV.
 
 YARV divide el problema de la implementación del lenguaje en dos etapas: un compilador de código de bytes y una máquina virtual que ejecuta dicho bytecode. Surge de manera natural la pregunta de si no sería posible usar alguna máquina virtual ya existente y generar bytecode compatible con ella. Si hablamos de máquinas virtuales, la de Java está más que probada.
+\bigskip
 
-\subsection{Otros interpretes para ruby}
+
+
+%% OTROS INTERPRETES PARA RUBY
+\subsection{Otros intérpretes para ruby}
 
 JRuby consiste en escribir un intérprete Ruby escrito en Java. Una de las ventajas de ejecutar Ruby en una máquina virtual de Java, por supuesto, es tener acceso a código ya existente escrito en Java lo cual hace a JRuby la implementación ideal para integrar Rails en entornos enterprise. Otra ventaja es que JRuby por definición se verá beneficiado de las mejoras posteriores que se realicen en el intérprete Java. JRuby es un intérprete de Ruby escrito en Java, XRuby es un traductor de Ruby a bytecode de Java (o lo que es lo mismo, de un fichero .rb generará un .class) Este traductor está basado en ANTLR. XRuby ya es capaz de generar bytecode Java para toda la librería estándar de Ruby y para Ruby on Rails 1.2.x
 
 Rubinius es otro interprete cuyo enfoque consiste en escribir la mayor parte del lenguaje en Ruby y dejar que la máquina virtual -escrita en C- ejecute el menor subconjunto posible de funcionalidad. En concreto, Rubinius pone el énfasis en el recolector de memoria y la implementación de forks y threads. A destacar que Rubinius parece surgir del mundo Rails (Evan Phoenix trabaja en Engine Yard, proveedores de alojamiento avanzado Rails) por tanto buena parte de las mejoras que promete en el intérprete atacan a los problemas de rendimiento que más pueden aquejar a nuestras aplicaciones Rails.
+\bigskip
+
+
 
 
 % RUBY ON RAILS: UN PUNTO FUERTE DEL LENGUAJE
@@ -714,6 +768,7 @@ Rubinius es otro interprete cuyo enfoque consiste en escribir la mayor parte del
 	Rails utiliza el patrón MVC para poder administrar sus recursos. Si bien Java utiliza distintos frameworks también basados en MVC, Rails lleva el concepto mucho mas allá debido a que hay un lugar específico para cada parte del codigo, y cada componente de nuestra aplicación funciona de manera estándar. Es decir, es como si iniciaramos una aplicacion con el esqueleto previamente armado.
 	\par
 	Todas estas potenciales caracteristicas hicieron que Ruby on Rails sea una de las razones por las que el lenguaje de programación Ruby ha logrado un importante impulso, siendo cada vez mas reconocido como una buena opción a la hora de elegir un lenguaje con el que llevar a cabo un proyecto.
+\bigskip
 
 
 
@@ -756,6 +811,7 @@ Con el paso del tiempo Ruby fue siendo utilizado por un número cada vez mayor d
 	\item Lucent: uso en producto de telefonía wireless 3G. (\textit{http://www.lucent.com})
 \end{itemize}
 \medskip
+\bigskip
 
 
 
@@ -763,6 +819,7 @@ Con el paso del tiempo Ruby fue siendo utilizado por un número cada vez mayor d
 % UN EJEMPLO PRACTICO DE APLICACIÓN
 \section{Un ejemplo práctico de aplicacion}
 
+\bigskip
 
 
 
