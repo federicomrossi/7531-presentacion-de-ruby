@@ -392,6 +392,10 @@ Existen tres usos de los rangos:  para secuencias (en la cual se genera una seri
 \lstinputlisting[label=code:sintaxis_rangos_01,caption=``Rangos'']{codes/sintaxis_rangos_01.rb} 
 \bigskip
 
+Para utilizar el objeto Range como secuencias, primero se debe crear este objeto especificando el elemento inicial y el final con dos puntos (lo cual significa que el rango incluye al ultimo elemento) o tres puntos (no incluye el elemento final) como se puede observar en las líneas 2 y 3. Como los rangos son objetos se pueden utilizar varios métodos que poseen. En las líneas 3 y 4 se muestra como se envía un mensaje al objeto rango consultándole si el parámetro que recibe el método se encuentra dentro del rango. En la línea 6 se envía un mensaje al objeto rango, el método inject recibe como parámetro un bloque que debe recibir como parámetros un acumulador (que en el primer llamado es cero) y los elementos de sucesivos del rango, este bloque define cual es la operación que se acumulara posición por posición del rango.
+Se puede utilizar en expresiones condicionales, como se ve en la línea 14 donde se esta validando si la cadena ingresada en la entrada estándar empieza con la palabra start y termina con la palabra end  utilizando rangos.
+Se puede utilizar como intervalos, en las líneas 14, 15, 17 y 18 se puede observar como se crean objetos Range y se utiliza el operador === sobrecargado (que en realidad es un método con el nombre ===) que chequea si esta en el intervalo un elemento. En la estructura de control case que comienza en la línea 20 también se utiliza para el mismo propósito, de chequear si un elemento pertenece a un intervalo representado por el objeto Range.
+
 
 
 %%% COLECCIONES: Arrays
