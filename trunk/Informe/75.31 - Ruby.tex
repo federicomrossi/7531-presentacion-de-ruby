@@ -302,7 +302,14 @@ Ahora, notemos que si calculamos el factorial de cualquier número (\refcode{cod
 
 %% EXPRESIONES REGULARES
 \subsubsection{Expresiones regulares}
-Otro punto importante integrado en el lenguaje, y siguiendo los buenos resultados de PERL, son las \textit{expresiones regulares}. Estas permiten comprobar si una cadena satisface un patrón en particular. En el \textit{Cuadro 1} se puede observar un listado de los caracteres especiales para su uso.\\
+Otro punto importante integrado en el lenguaje, y siguiendo los buenos resultados de PERL, son las \textit{expresiones regulares}. Estas permiten comprobar si una cadena satisface un patrón en particular. En el \textit{Cuadro 1} se puede observar un listado de los caracteres especiales para su uso.
+	\par
+	Una expresion regular en Ruby esta delimitada por dos barras invertidas:
+
+\begin{itemize}
+	\itemsep=1pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
+	\item  		\textit{/regular expression/}
+\end{itemize}
 
 \begin{table}[!hbt]
 	\begin{center}
@@ -348,12 +355,6 @@ Otro punto importante integrado en el lenguaje, y siguiendo los buenos resultado
 
 \end{table}
 
-	Una expresion regular en Ruby esta delimitada por dos \textit{/}:
-\begin{itemize}
-	\itemsep=1pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
-	\item  		\textit{/regular expression/}
-\end{itemize}
-
 
 	Literalmente una expresion regular es un objeto del tipo \textit{Regexp}. Estos objetos pueden ser creados de las siguientes 6 maneras:
 
@@ -366,8 +367,9 @@ Otro punto importante integrado en el lenguaje, y siguiendo los buenos resultado
 	\item  Regexp.new('pattern'))
 	\item  Regexp.new('pattern', 'i' )
 \end{itemize}
+\bigskip
 
-	Independientemente del patron que se utiliza, se le puede agragar cualquiera de las siguientes tres opciones:
+\noindent Independientemente del patrón que se utiliza, se le puede agregar cualquiera de las siguientes tres opciones:
 
 \begin{itemize}
 	\itemsep=1pt \topsep=0pt \partopsep=0pt \parskip=0pt \parsep=0pt
@@ -376,7 +378,7 @@ Otro punto importante integrado en el lenguaje, y siguiendo los buenos resultado
 	 \item x  - Extended Mode
 \end{itemize}
 	
-\noindent En el \refcode{code:sintaxis_regexpr_01} se pueden observar 3 ejemplos de uso de las expresiones regulares. En el ejemplo 1 el operador \textit{ '=\~'}  compara una Regexp con un string normal y devuelve true si la Regexpr matchea con una porcion del string. El segundo ejemplo usa los operadores \textit{' \^'} y \textit{ ' \$'} . Estos operadores machean el comienzo y el final de una línea respectivamente.
+\noindent En el \refcode{code:sintaxis_regexpr_01} se pueden observar tres ejemplos de uso de las expresiones regulares. En el primer ejemplo, el operador \textit{``=$\sim$''}  compara una Regexp con un string normal y devuelve true si la Regexpr matchea con una porción del string. El segundo ejemplo usa los operadores \textit{``$\wedge$''} y \textit{ ``\$''} . Estos operadores machean el comienzo y el final de una línea respectivamente.
 
 % Código
 \lstinputlisting[label=code:sintaxis_regexpr_01,caption=``Expresiones regulares'']{codes/sintaxis_regexp_01.rb} 
@@ -386,43 +388,54 @@ Otro punto importante integrado en el lenguaje, y siguiendo los buenos resultado
 
 %%% COLECCIONES: Rangos
 \subsubsection{Colecciones: \textit{Rangos}}
-La colección más primitiva de todas es el rango que permite representar una colección secuencial de valores (números o letras secuenciales)
-Para indicar rangos se pueden utilizar los dos puntos (incluye al primer elemento y al último elemento inclusive) o tres puntos (excluye al último elemento del rango).
-Existen tres usos de los rangos:  para secuencias (en la cual se genera una serie de objetos secuenciales que pude tener muchos usos), para crear expresiones condicionales o para crear intervalos. En el \refcode{code:sintaxis_rangos_01}  se expone un ejemplo de uso para cada caso. Estos usos son originales de Ruby.
+La colección más primitiva de todas es el rango que permite representar una colección secuencial de valores (números o letras secuenciales). Para indicar rangos se pueden utilizar los dos puntos (incluye al primer elemento y al último elemento inclusive) o tres puntos (excluye al último elemento del rango).
+	\par
+	Existen tres usos de los rangos:  para secuencias (en la cual se genera una serie de objetos secuenciales que puede tener muchos usos), para crear expresiones condicionales o para crear intervalos. En el \refcode{code:sintaxis_rangos_01}  se expone un ejemplo de uso para cada caso. Estos usos son originarios de Ruby.
 
 % Código
 \lstinputlisting[label=code:sintaxis_rangos_01,caption=``Rangos'']{codes/sintaxis_rangos_01.rb} 
-\bigskip
+\bigskip\bigskip
 
-Para utilizar el objeto Range como secuencias, primero se debe crear este objeto especificando el elemento inicial y el final con dos puntos (lo cual significa que el rango incluye al ultimo elemento) o tres puntos (no incluye el elemento final) como se puede observar en las líneas 2 y 3. Como los rangos son objetos se pueden utilizar varios métodos que poseen. En las líneas 3 y 4 se muestra como se envía un mensaje al objeto rango consultándole si el parámetro que recibe el método se encuentra dentro del rango. En la línea 6 se envía un mensaje al objeto rango, el método inject recibe como parámetro un bloque que debe recibir como parámetros un acumulador (que en el primer llamado es cero) y los elementos de sucesivos del rango, este bloque define cual es la operación que se acumulara posición por posición del rango.
-Se puede utilizar en expresiones condicionales, como se ve en la línea 14 donde se esta validando si la cadena ingresada en la entrada estándar empieza con la palabra start y termina con la palabra end  utilizando rangos.
-Se puede utilizar como intervalos, en las líneas 14, 15, 17 y 18 se puede observar como se crean objetos Range y se utiliza el operador === sobrecargado (que en realidad es un método con el nombre ===) que chequea si esta en el intervalo un elemento. En la estructura de control case que comienza en la línea 20 también se utiliza para el mismo propósito, de chequear si un elemento pertenece a un intervalo representado por el objeto Range.
+	Para utilizar el objeto \textit{Range} como secuencias, primero se debe crear este objeto especificando el elemento inicial y el final con dos puntos (lo cual significa que el rango incluye al último elemento) o tres puntos (no incluye el elemento final) como se puede observar en las líneas 2 y 3. Como los rangos son objetos se pueden utilizar varios métodos que poseen. En las líneas 3 y 4 se muestra como se envía un mensaje al objeto rango consultándole si el parámetro que recibe el método se encuentra dentro del rango. En la línea 6 se envía un mensaje al objeto rango, el método \textit{inject} recibe como parámetro un bloque que debe recibir como parámetros un acumulador (que en el primer llamado es cero) y los elementos sucesivos del rango, este bloque define cual es la operación que acumulará posición por posición del rango.
+	\par
+	Se puede utilizar en expresiones condicionales, como se ve en la línea 14 donde se esta validando si la cadena ingresada en la entrada estándar empieza con la palabra start y termina con la palabra end  utilizando rangos.
+	\par
+	Se puede utilizar como intervalos, en las líneas 14, 15, 17 y 18 se puede observar como se crean objetos Range y se utiliza el operador ``==='' sobrecargado (que en realidad es un método con el nombre ``==='') que chequea si un elemento esta en el intervalo. En la estructura de control \textit{case} que comienza en la línea 20 también se utiliza para el mismo propósito, de chequear si un elemento pertenece a un intervalo representado por el objeto Range.
+\bigskip
 
 
 
 %%% COLECCIONES: Arrays
 \subsubsection{Colecciones: \textit{Arrays}}
-Los Arrays son una lista secuencial de objetos que pueden ser almacenados,  modificados,  usando una gran variedad de comandos en ruby.  
-A continuación, en el código \refcode{code:sintaxis_arrays_01}, se muestran ejemplos sobre el uso de arrays. Más adelante, cuando se vean los conceptos de bloques se veran los iteradores sobre esta y el resto de las colecciones.
+	
+	Los \textit{Arrays} son una lista secuencial de objetos que pueden ser almacenados,  modificados,  usando una gran variedad de comandos en Ruby. A continuación, en el código \refcode{code:sintaxis_arrays_01}, se muestran ejemplos sobre el uso de arrays. Más adelante, cuando se vean los conceptos de bloques se verán los iteradores sobre esta y el resto de las colecciones.
 
 % Código
 \lstinputlisting[label=code:sintaxis_arrays_01,caption=``Arrays'']{codes/sintaxis_arrays_01.rb} 
 \bigskip
 
-En las líneas 5 y 6 se ve el uso de algunos de los operadores que tiene sobre cargado los objetos Array.  El operador de indexación se utiliza para obtener elementos, si se ingresa un número negativo comienza a contar desde el final hacia el comienzo como se ve en la línea 7, si se ingresan varios índices se obtiene el array con los valores que se indican como se ve en la línea 14 y 15, también se pueden utilizar rangos para obtener un array que contenga los elementos indicados en el rango. El objeto array posee varios métodos como son el map que aplica una operación sobre cada elemento del array como se ve en la línea 13. En la línea 14 se observa algo interesante el array compone un objeto drop, el cual tiene un método que se llama while que recibe un bloque en el cual se debe especificar cual es la condición para eliminar los elementos de toda la colección.
+En las líneas 5 y 6 se ve el uso de algunos de los operadores que tiene sobre cargado los objetos Array.  El operador de indexación se utiliza para obtener elementos, si se ingresa un número negativo comienza a contar desde el final hacia el comienzo como se ve en la línea 7, si se ingresan varios índices se obtiene el array con los valores que se indican como se ve en la línea 14 y 15, también se pueden utilizar rangos para obtener un array que contenga los elementos indicados en el rango. El objeto array posee varios métodos como son el \textit{map} que aplica una operación sobre cada elemento del array como se ve en la línea 13. En la línea 14 se observa algo interesante: el array compone un objeto drop, el cual tiene un método que se llama \textit{while} que recibe un bloque en el cual se debe especificar cual es la condición para eliminar los elementos de toda la colección.
+\bigskip
 
+
+
+%%% COLECCIONES: Hash
 \subsubsection{Colecciones: \textit{Hash}}
-Conocidos también como diccionarios (aunque en el mundo ruby se prefiere el nombre hash), representan las Hash Table que son una colección indexada de datos accedidos por una clave. Son una implementación de búsqueda muy eficiente y son extensivamente utilizados en la construcción del lenguaje Ruby. A continuación se exponen ejemplos de uso de los mismos.
+Conocidos también como \textit{diccionarios} (aunque en el mundo de Ruby se prefiere el término \textit{hash}), representan las Tablas de Hash que son una colección indexada de datos accedidos por una clave. Son una implementación de búsqueda muy eficiente y son extensivamente utilizados en la construcción del lenguaje Ruby. A continuación se exponen ejemplos de uso de los mismos.
 
 % Código
 \lstinputlisting[label=code:sintaxis_hash_01,caption=``Hash"]{codes/sintaxis_hash_01.rb} 
 \bigskip
 
-En la línea 1 se muestra como se puede inicializar un hash el cual puede tener valores y claves de cualquier tipo de objeto. La línea 9 muestra un ejemplo interesante, el  objeto hash posee un objeto llamado delete que tiene el método if el cual determina si borra una tupla pudiendo evaluar la clave y/o el valor de cada elemento del hash.
+En la línea 1 se muestra como se puede inicializar un hash el cual puede tener valores y claves de cualquier tipo de objeto. La línea 9 muestra un ejemplo interesante, el  objeto hash posee un objeto llamado \textit{delete} que posee el método \textit{if} el cual determina si borra una tupla pudiendo evaluar la clave y/o el valor de cada elemento del hash.
+\bigskip
+
+
 
 %% SYMBOLS
 \subsection{Symbols}
 Symbols son la alternativa de las constantes para crear nombres (simbolos) que representen un único valor.  En el ejemplo mostrado en  \refcode{code:sintaxis_symbols_01}  se expone este concepto: "el valor no importa, importa el significado".
+\bigskip
 
 % Código
 \lstinputlisting[label=code:sintaxis_symbols_01,caption=``Symbols"]{codes/sintaxis_symbols_01.rb} 
@@ -439,24 +452,24 @@ Las claves de los Hash podrian ser Symbols. De esta manera se asegura que son ú
 %% CLASES
 \subsection{Clases}
 
-Una clase es definida por la palabra reservada class seguida por el identificador de la clase. La definición de la clsae termina con end.
-Una vez que una clase es declarada, esta puede ser instanciada por el metodo new. 
-Cuando un metodo de una clase es jecutado, la informacion de la instacia es retenida en la variable self.
-Las variables de instancia, se identifican con un '@'.  
-Cuando un objeto es creado con new, ruby invoca a initialize. El codigo  en  \refcode{code:sintaxis_clases_01} muestra las caracteristicas descriptas hasta este momento.
+	Una clase es definida por la palabra reservada \textit{class} seguida por el identificador de la clase. La definición de la clsae termina con \textit{end}.
+Una vez que una clase es declarada, esta puede ser instanciada por el método \textit{new}.
+	\par
+	Cuando un método de una clase es ejecutado, la información de la instacia es retenida en la variable \textit{self}.
+	\par
+	Las variables de instancia, se identifican con un \textit{``@''}. Cuando un objeto es creado con \textit{new}, Ruby invoca al método constructor \textit{initialize}. El \refcode{code:sintaxis_clases_01} muestra las características descriptas hasta este momento.
 
 % Código
 \lstinputlisting[label=code:sintaxis_clases_01,caption=``Definicion de clases y variables de instancia"]{codes/sintaxis_clases_01.rb} 
 \bigskip
 
-Ruby soporta herencia, de manera tal que una clase pueda heredar metodos y atributos de otra. 
-Tambien soporta variables de clase las cuales son variables alcanzables por todas las intancias de clases. Si las variables de clase no son inicializadas, se lanza una excepción.  El código  en  \refcode{code:sintaxis_clases_01} muestra la sintaxis de la herencia y de las variables de clase. 
+Ruby soporta herencia, de manera tal que una clase pueda heredar métodos y atributos de otra. También soporta variables de clase las cuales son variables alcanzables por todas las intancias de clases. Si las variables de clase no son inicializadas, se lanza una excepción.  El \refcode{code:sintaxis_clases_01} muestra la sintaxis de la herencia y de las variables de clase. 
 
 % Código
 \lstinputlisting[label=code:sintaxis_clases_02,caption=``Herencia y variables de clase"]{codes/sintaxis_clases_02.rb} 
 \bigskip
 
-Ruby permite utilizar modificadores de acceso: Public, Protected y Private. El codigo en \refcode{code:sintaxis_clases_03} y \refcode{code:sintaxis_clases_04} muestra las distintas sintaxis.
+Ruby permite utilizar modificadores de acceso: \textit{Public}, \textit{Protected} y \textit{Private}. El \refcode{code:sintaxis_clases_03} y el \refcode{code:sintaxis_clases_04} muestran las distintas sintaxis.
 
 % Código
 \lstinputlisting[label=code:sintaxis_clases_03,caption=``Modificadores de acceso"]{codes/sintaxis_clases_03.txt} 
@@ -466,21 +479,23 @@ Ruby permite utilizar modificadores de acceso: Public, Protected y Private. El c
 \lstinputlisting[label=code:sintaxis_clases_04,caption=``Modificadores de acceso"]{codes/sintaxis_clases_04.rb} 
 \bigskip
 
-Se pueden utilizar Symbols para proveer acceso de lectura o escritura sobre los atributos de una clase utilizando las key words \textit{attr\_reader} y \textit{attr\_writer} como se muestra en \refcode{code:sintaxis_clases_05}.   
+Se pueden utilizar Symbols para proveer acceso de lectura o escritura sobre los atributos de una clase utilizando las palabras claves \textit{attr\_reader} y \textit{attr\_writer} como se muestra en \refcode{code:sintaxis_clases_05}.   
 
 % Código
 \lstinputlisting[label=code:sintaxis_clases_05,caption=`Properties"]{codes/sintaxis_clases_05.rb} 
 \bigskip
 
-Para obtener una combinacion de ambos, es decir darle a un atributo los dos modificadores de acceso, se utiliza \textit{attr\_accesor}
+Para obtener una combinacion de ambos, es decir darle a un atributo los dos modificadores de acceso, se utiliza \textit{attr\_accesor}.
 \bigskip
 
 
 
 %% VARIABLES
 \subsection{Variables}
-En ruby las variables son referencias a valores en memoria. Cuando se asigna una variable a otra, no se duplica el objeto. Para duplicar objetos se puede utilizar los métodos clone o dup que son de Object.
-Las variables pueden tener alcance global, local (dadas por cualquier bloque: bloque de una estructura de control o bloque de un método) o de clase.
+	
+	En Ruby las variables son referencias a valores en memoria. Cuando se asigna una variable a otra, no se duplica el objeto. Para duplicar objetos se puede utilizar los métodos \textit{clone} o \textit{dup} declarados en \textit{Object}.
+	\par
+	Las variables pueden tener alcance global, local (dadas por cualquier bloque: bloque de una estructura de control o bloque de un método) o de clase.
 
 % Código
 \lstinputlisting[label=code:sintaxis_variables_01,caption="Variables"]{codes/sintaxis_variables_01.rb} 
@@ -491,17 +506,21 @@ Las variables pueden tener alcance global, local (dadas por cualquier bloque: bl
 %% MÉTODOS
 \subsection{Métodos}
 
-Cuando un método es llamado en Ruby, técnicamente no se esta “llamando” a un método. Lo que se esta haciendo es enviando un mensaje a un objeto, como diciendo: “Hey, vos tenés este método?” si lo tiene entonces se ejecuta, si no lo tiene se lanza una exception “NoMethodError”. Esto, como se puede notar, proviene del paradigma de POO.
-Los métodos siempre devuelven un valor, el que corresponde a la última sentencia que ejecuta. 
-En la línea 7 del \refcode{code:sintaxis_metodos_01} se muestra que se pueden asignar parámetros por defecto.
-% Código
-\lstinputlisting[label=code:sintaxis_metodos_01,caption="Declaración métodos"]{codes/sintaxis_metodos_01.txt} 
+	Cuando un método es llamado en Ruby, técnicamente no se esta “llamando” a un método. Lo que se esta haciendo es enviando un mensaje a un objeto, como diciendo: “Hey, vos tenés este método?” si lo tiene entonces se ejecuta, si no lo tiene se lanza una excepción \textit{“NoMethodError”}. Esto, como se puede notar, proviene del paradigma de POO.
+	\par
+	Los métodos siempre devuelven un valor, el que corresponde a la última sentencia que ejecuta. En la línea 7 del \refcode{code:sintaxis_metodos_01} se muestra que se pueden asignar parámetros por defecto.
 
-En el \refcode{code:sintaxis_metodos_02} se puede ver que l os métodos se pueden invocar sin utilizar paréntesis como se ve en la línea 8, la lista de parámetros de un método puede ser variable como se ve en la línea 2.
 % Código
-\lstinputlisting[label=code:sintaxis_metodos_02,caption="Parámetros"]{codes/sintaxis_metodos_02.txt} 
+\lstinputlisting[label=code:sintaxis_metodos_01,caption="Declaración métodos"]{codes/sintaxis_metodos_01.txt}
+\bigskip\bigskip
 
-El \refcode{code:sintaxis_metodos_03} muestra un ejemplo de programación de alto orden con metodos y la capacidad reflexiva de Ruby. En la línea 20 se utiliza el método self que es un puntero a la instancia (en este caso Object), método que se invoca se llama method el cual recibe como parámetro un Symbol que representa el método del objeto que se desea obtener (ruby mantiene un hash de Symbol de todos los atributos que posee la clase). Como lo que se obtiene es un método y este no se puede invocar aisladamente fuera del objeto, se debe convertirlo a un procedimiento, por eso se utiliza el método to\_proc para poder utilizarlo como se ve en las líneas 9 mediante el método call.
+	En el \refcode{code:sintaxis_metodos_02} se puede ver que los métodos se pueden invocar sin utilizar paréntesis, como se ve en la línea 8. La lista de parámetros de un método puede ser variable, como se ve en la línea 2.
+
+% Código
+\lstinputlisting[label=code:sintaxis_metodos_02,caption="Parámetros"]{codes/sintaxis_metodos_02.txt}
+\bigskip\bigskip
+
+	El \refcode{code:sintaxis_metodos_03} muestra un ejemplo de programación de alto orden con métodos y la capacidad reflexiva de Ruby. En la línea 20 se utiliza el método self que es un puntero a la instancia (en este caso Object), el método que se invoca se llama method el cual recibe como parámetro un Symbol que representa el método del objeto que se desea obtener (Ruby mantiene un hash de Symbol de todos los atributos que posee la clase). Como lo que se obtiene es un método y este no se puede invocar aisladamente fuera del objeto, debe ser convertido a un procedimiento, por eso se utiliza el método \textit{to\_proc} para poder utilizarlo, como se ve en la línea 9, mediante el método \textit{call}.
 
 
 % Código
@@ -528,21 +547,28 @@ El \refcode{code:sintaxis_metodos_03} muestra un ejemplo de programación de alt
 \subsection{Bloques y Func}
 
 Los \textit{bloques} son un concepto muy poderoso e importante en Ruby. Estos son objetos que contienen código y todo el contexto necesario para ejecutarse.
-En el \refcode{code:sintaxis_bloques&proc_01} se ven las dos sintaxis posibles de utilizar y se explica el concepto de bloques, dentro del contexto de los iteradores de colecciones. Como se ve en la línea 7 y 9 los bloques pueden especificar con la palabras do end además de con las llaves.
-% Código
-\lstinputlisting[label=code:sintaxis_bloques&proc_01,caption=``Bloques básicos'']{codes/sintaxis_bloques&proc_01.txt} 
+En el \refcode{code:sintaxis_bloques&proc_01} se ven las dos sintaxis posibles de utilizar y se explica el concepto de bloques, dentro del contexto de los iteradores de colecciones. Como se ve en la línea 7 y 9 los bloques pueden especificarse con la palabras \textit{do} y \textit{end} además de con las llaves.
 \bigskip
 
-Un objeto procedimiento nuevo se obtiene utilizando la palabra reservada \textit{Proc}. Se pueden utilizar procedimientos anónimos. Estos objetos preservan el contexto en el cual fueron creados.
-En el \refcode{code:sintaxis_bloques&proc_02} se ven dos alternativas para asignar un handler a la señal de interrupción “SIGINT”. En la línea 2 se crea el procedimiento que es el handler y que luego se asigna utilizando la llamada a sistema que provee Ruby a través del método trap (línea 3). En la línea 5 se ve una alternativa a la sentencia de la línea 3 que utiliza un bloque con un parámetro para crear un procedimiento que realiza esa sentencia. 
 % Código
-\lstinputlisting[label=code:sintaxis_bloques&proc_02,caption=``Ejemplo de uso de procedimientos'']{codes/sintaxis_bloques&proc_02.txt} 
+\lstinputlisting[label=code:sintaxis_bloques&proc_01,caption=``Bloques básicos'']{codes/sintaxis_bloques&proc_01.txt} 
+\bigskip\bigskip
 
-El \refcode{code:sintaxis_bloques&proc_03} muestra la sintaxis para crear procedimientos anónimos, es decir sin nombrar al objeto Proc (línea 3) para obtner una sintaxis más compacta.
+Un objeto procedimiento nuevo se obtiene utilizando la palabra reservada \textit{Proc}. Se pueden utilizar procedimientos anónimos. Estos objetos preservan el contexto en el cual fueron creados.
+En el \refcode{code:sintaxis_bloques&proc_02} se ven dos alternativas para asignar un handler a la señal de interrupción “SIGINT”. En la línea 2 se crea el procedimiento que es el handler y que luego se asigna utilizando la llamada a sistema que provee Ruby a través del método \textit{trap} (línea 3). En la línea 5 se ve una alternativa a la sentencia de la línea 3 que utiliza un bloque con un parámetro para crear un procedimiento que realiza esa sentencia. 
+\bigskip
+
+% Código
+\lstinputlisting[label=code:sintaxis_bloques&proc_02,caption=``Ejemplo de uso de procedimientos'']{codes/sintaxis_bloques&proc_02.txt}
+\bigskip\bigskip
+
+El \refcode{code:sintaxis_bloques&proc_03} muestra la sintaxis para crear procedimientos anónimos, es decir sin nombrar al objeto Proc (línea 3) para obtener una sintaxis más compacta.
+
 % Código
 \lstinputlisting[label=code:sintaxis_bloques&proc_03,caption=``Procedimientos anónimos'']{codes/sintaxis_bloques&proc_03.txt} 
+\bigskip\bigskip
 
-En \refcode{code:sintaxis_bloques&proc_04} se ven ejemplos de códigos que crean funciones, es decir funciones que crean funciones empleando Proc y la expresión lambda. La línea 14 es una función que devuelve una función que crea un filtro. Esta función recibe como parámetro la condición de filtro que tiene que ser una función que recibe un parámetro a evaluar, luego devuelve una función que recibe como parámetro una lista. En la línea 20 se ve la creación del filtro de números impares y en la línea 21 se ve como se aplica a una lista.
+En \refcode{code:sintaxis_bloques&proc_04} se ven ejemplos de códigos que crean funciones, es decir funciones que crean funciones empleando \textit{Proc} y la expresión \textit{lambda}. La línea 14 es una función que devuelve una función que crea un filtro. Esta función recibe como parámetro la condición de filtro que tiene que ser una función que recibe un parámetro a evaluar, luego devuelve una función que recibe como parámetro una lista. En la línea 20 se ve la creación del filtro de números impares y en la línea 21 se ve como se aplica a una lista.
 % Código
 \lstinputlisting[label=code:sintaxis_bloques&proc_04,caption=``Procedimientos y Bloques'']{codes/sintaxis_bloques&proc_04.txt} 
 En el \refcode{code:sintaxis_bloques&proc_05} se puede ver en las líneas 2 y 3 que la expresión lambda es azúcar sintáctico de la creación de un Proc nuevo… pero en realidad son distintos aunque solo en los siguiente: un procedimiento lambda chequea la cantidad de argumentos y Proc no como se puede ver en las líneas 5, 6, 7 y 8.
@@ -555,34 +581,32 @@ En el \refcode{code:sintaxis_bloques&proc_05} se puede ver en las líneas 2 y 3 
 %% EXCEPCIONES
 \subsection{Excepciones}
 
-Una exception es una de las formas que los programdadores tienen para capturar errores. 
-El siguiente código es un ejemplo de una exception lanzada por un usuario. En este caso el error es generado pero no es capturado. En casos donde los errores no son capturador, ruby es el que captura como ultimo recurso. En estos casos el error se reporta y el programa es abortado
+Una excepción es una de las formas que los programdadores tienen para capturar errores. 
+El siguiente código es un ejemplo de una excepción lanzada por un usuario. En este caso el error es generado pero no es capturado. En casos donde los errores no son capturador, Ruby es el que captura como ultimo recurso. En estos casos el error se reporta y el programa es abortado
 
 % Código
 \lstinputlisting[label=codesintaxis_exception_01,caption=``Lanzando una exception'']{codes/sintaxis_exception_01.rb} 
-\bigskip
+\bigskip\bigskip
 
-Para capturar exceptions ruby provee la instrucción clause. El programador deve declarar el bloque (begin .. end) donde se capturan las exceptions. Si la exception no es capturada se puede agregar una sentencia que se ejecute en ese caso utilizando un else como se muestra en el siguiente ejemplo. 
+Para capturar excepciones Ruby provee la instrucción \textit{clause}. El programador debe declarar el bloque (\textit{begin .. end}) donde se capturan las excepciones. Si la excepción no es capturada se puede agregar una sentencia que se ejecute en ese caso utilizando un \textit{else} como se muestra en el siguiente ejemplo. 
 
 % Código
 \lstinputlisting[label=codesintaxis_exception_02,caption=``Capturando una exception'']{codes/sintaxis_exception_02.rb} 
-\bigskip
+\bigskip\bigskip
 
-Para asegurar que se ejeucte una sentencia siempre se utiliza la clausula ensure como se muestra en el siguiente código:
+Para asegurar que se ejecute una sentencia siempre se utiliza la clausula \textit{ensure}, como se muestra en el \refcode{code:sintaxis_exception_03}. Las excepciones se representan en una jerarquía de objetos que heredan de \textit{Standard Error}. 
+\bigskip
 
 % Código
-\lstinputlisting[label=codesintaxis_exception_03,caption=``Clausula ensure'']{codes/sintaxis_exception_03.rb} 
-\bigskip
-
-Las exceptions se representan en una jerarquia de objetos que heredan de Standard Error. 
-\bigskip
+\lstinputlisting[label=code:sintaxis_exception_03,caption=``Clausula ensure'']{codes/sintaxis_exception_03.rb} 
+\bigskip\bigskip
 
 
 
 %% ESTRUCTURAS DE CONTROL
 \subsection{Estructuras de control}
 
-Las estructuras de control presentes en Ruby son las típicas que encontramos en la mayoría de los lenguajes de programación el case, el while y el for. En la línea 4 se ven las distintas formas de establecer las condiciones del case (se pueden utilizar rangos, y varios elementos separados por coma). En la línea 23 se denota como se puede utilizar el while al final de una línea (como el if), de esta manera el código es más entendible “por los humanos” ya que por ejemplo esta expresando: “auméntame y muéstrame el contador i mientras sea menor que tres”. También las líneas 30, 38 y 43 muestran cómo hay un for para cada estilo conocido.
+Las estructuras de control presentes en Ruby son las típicas que encontramos en la mayoría de los lenguajes de programación: el \textit{case}, el \textit{while} y el \textit{for}. En la línea 4 se ven las distintas formas de establecer las condiciones del case (se pueden utilizar rangos, y varios elementos separados por coma). En la línea 23 se denota como se puede utilizar el while al final de una línea (como el if), de esta manera el código es más entendible “por los humanos” ya que por ejemplo esta expresando: “auméntame y muéstrame el contador \textit{i} mientras sea menor que tres”. También las líneas 30, 38 y 43 muestran cómo hay un for para cada estilo conocido.
 
 % Código
 \lstinputlisting[label=code:sintaxis_estructuracontrol_01,caption=``Estructuras de control'']{codes/sintaxis_estructuracontrol_01.rb}
@@ -603,17 +627,17 @@ Los nombres de métodos que finalizan con un signo de interrogación (?, pronunc
 %MULTITHREADING
 \section{Multithreading}
 
-	Los threads en ruby estan implementados completamente en el interprete de Ruby, esto lo hace portable puesto que no hay dependencia del sistema operativo, pero en contra parte con esto no se obtienen los beneficios de trabajar con threads nativos y por lo tanto se pueden experimentar problemas de innanición (starvation) al utilizar threads en Ruby, asi como en el caso en que se produsca un deadlock en los thread se podria suspender todo el proceso. Tambien en el caso en que un thread que esta en ejecución realiza una llamada a sistema que toma mucho tiempo, hasta que el interprete no tenga nuevamente el control no habria multithreading.
+	Los threads en Ruby estan implementados completamente en el intérprete del lenguaje. Esto lo hace portable puesto que no hay dependencia del sistema operativo, pero en contra parte con esto no se obtienen los beneficios de trabajar con threads nativos y por lo tanto se pueden experimentar problemas de innanición (starvation) al utilizar threads, asi como en el caso en que se produzca un deadlock en los thread, se podría suspender todo el proceso. También, en el caso en que un thread que esta en ejecución, realiza una llamada al sistema que toma mucho tiempo, hasta que el intérprete no tenga nuevamente el control no habrá multithreading.
 	\par
-	En el \refcode{code:multithreading_01} se muestra como se utilizan threads para manejar cada transacción HTTP para descargar un conjunto de páginas.
+	En el \refcode{code:multithreading_01} se muestra como se utilizan threads para manejar cada transacción HTTP para descargar un conjunto de sitios web.
 
 % Código
 \lstinputlisting[label=code:multithreading_01,caption=``Multithreading'']{codes/multithreading_01.rb} 
 \bigskip
 
-	Analizando las sutilezas que esconde el codigo podemos decir que los threads son creados haciendo la llamada \textit{Thread.new}. Esta recibe un bloque que contiene el código que sera ejecutado por el thread. En este caso el bloque utiliza la libreria \textit{net/http}.
+	Analizando las sutilezas que esconde el código podemos decir que los threads son creados haciendo la llamada \textit{Thread.new}. Esta recibe un bloque que contiene el código que será ejecutado por el thread. En este caso el bloque utiliza la libreria \textit{net/http}.
 	\par
-	Cuando creamos un thread, estamos pasando la pagina web requerida como parametro. Luego este parametro es pasado dentro del bloque como myPage.
+	Cuando creamos un thread, estamos pasando la URL del sitio requerida como parámetro. Luego este parámetro es pasado dentro del bloque como \textit{myPage}.
 \bigskip
 
 
@@ -621,7 +645,7 @@ Los nombres de métodos que finalizan con un signo de interrogación (?, pronunc
 %% MANIPULANDO THREADS
 \subsection{Manipulando threads}
 
-	En el código anterior vemos que un metodo que se invoca de cada thread es join. Cuando un programa en Ruby termina, se matan todos los threads sin tener en cuenta su estado. Join sirve para esperar que termine su ejecución un thread particular, de esta forma el codigo que vimos se asegura que terminen los 3 threads que se lanzaron.
+	En el código anterior vemos que un método que se invoca de cada thread es \textit{join}. Cuando un programa en Ruby termina, se matan todos los threads sin tener en cuenta su estado. Join sirve para esperar a que un thread en particular termine su ejecución, de esta forma el código que vimos se asegura de que terminen los tres threads que se lanzaron.
 	\par
 	Además de join hay otros métodos, como por ejemplo \textit{Thread.current} obtiene el thread actual. Para obtener una lista de todos los threads en ejecución o parados se ejecuta Thread.list. Para saber el estado de un thread se puede ejecutar \textit{thread.status} o \textit{thread.alive}.
 \bigskip
@@ -630,7 +654,8 @@ Los nombres de métodos que finalizan con un signo de interrogación (?, pronunc
 
 %% VARIABLES DE THREADS
 \subsection{Variables de threads}
-Un thread puede acceder a cualquier variable que se encuentre en el alcance donde fue creado. Variables locales del thread (dentro del alcance del bloque de ejecucion del thread) no son compartidas por otros threads. Se puede utilizar a los thread como hash donde se puedan almacenar variables locales a cada thread y ser accedidas desde el el thread principal.
+	
+	Un thread puede acceder a cualquier variable que se encuentre en el alcance donde fue creado. Variables locales del thread (dentro del alcance del bloque de ejecución del thread) no son compartidas por otros threads. Se puede utilizar a los thread como hash donde se puedan almacenar variables locales a cada thread y ser accedidas desde el el thread principal.
 
 % Código
 \lstinputlisting[label=code:multithreading_02,caption=``Variables de threads'']{codes/multithreading_02.txt} 
@@ -641,16 +666,20 @@ Un thread puede acceder a cualquier variable que se encuentre en el alcance dond
 %% SEMÁFOROS
 \subsection{Semáforos}
 
-Para controlar el acceso a los recursos compartidos por varios thread (exclusión mutua), ruby implementa en el core los semaforos en la clase Mutex. En las imagenes siguientes se ven la sintaxis y posteriormente un ejemplo de uso.
-El \refcode{code:multithreading_03} muestra los distintos tipos de sintaxis que se pueden utilizar para utilizar semafóros en Ruby. En la línea 2 se crea un objeto semáforo que tiene alcance dentro de los threads a y b creados en las líneas 5 y 11. Siempre que se identifique un bloque conflictivo, es decir donde se acceda a recursos compartidos por los thread se puede emplear la sintaxis de la línea 5 y 11 o la sintaxis de la línea  16 y 20.
+	Para controlar el acceso a los recursos compartidos por varios threads (exclusión mutua), Ruby implementa en el core los \textit{semáforos} en la clase \textit{Mutex}. En las imágenes siguientes se ven la sintaxis y posteriormente un ejemplo de uso.
+	\par
+	El \refcode{code:multithreading_03} muestra los distintos tipos de sintaxis existentes para utilizar semafóros en Ruby. En la línea 2 se crea un objeto semáforo que tiene alcance dentro de los threads \textit{a} y \textit{b} creados en las líneas 5 y 11. Siempre que se identifique un bloque conflictivo, es decir donde se acceda a recursos compartidos por los threads se puede emplear la sintaxis de la línea 5 y 11 o la sintaxis de la línea  16 y 20.
+
 % Código
 \lstinputlisting[label=code:multithreading_03,caption=``Uso de mutex'']{codes/multithreading_03.txt} 
+\bigskip\bigskip
+
+	El \refcode{code:multithreading_04} muestra un ejemplo de threads en donde se utiliza un semáforo: existen dos contadores que un thread debe incrementar (el thread counter creado en la línea 4). Ahora esos contadores se deben incrementar al mismo tiempo, de modo tal que la diferencia de siempre cero. Esta diferencia la calcula el thread \textit{spy} que se crea en la línea 14. Si no se usara un mutex como se usa en las líneas 8 y 16 podría ser que la diferencia no sea nula, que es el objetivo del programa mostrado.
 \bigskip
 
-El \refcode{code:multithreading_04} muestra un ejemplo de threads en donde se utiliza un semáforo: existen dos contadores que un thread debe incrementar (el thread counter creado en la línea 4). Ahora esos contadores se deben incrementar al mismo tiempo, de modo tal que la diferencia de siempre cero. Esta diferencia la calcula el thread spy que se crea en la línea 14. Si no se usara un mutex como se usa en las líneas 8 y 16 podría ser que la diferencia no de 0, que es objetivo del programa mostrado. 
 % Código
 \lstinputlisting[label=code:multithreading_04,caption=``Ejemplo utilizando mutex'']{codes/multithreading_04.rb} 
-\bigskip
+\bigskip\bigskip
 
 
 
@@ -697,7 +726,7 @@ El \refcode{code:multithreading_04} muestra un ejemplo de threads en donde se ut
 	Cuando no hay mas estructuras \textit{RValue} disponibles y el programa necesita almacenar un valor nuevo, Ruby ejecuta el código del \textit{recolector de basura (GC)}. El trabajo del recolector de basura es encontrar cual de los \textit{RValues} ya no se encuentran referenciados por la aplicación, pudiendo ser reciclado y reutilizado por otro valor. Veámos como funciona a un alto nivel.
 	\par
 	Primeramente, el código del GC ``marca'' todas las estructuras \textit{RValue} activas. Es decir, recorre todas las variables y otras referencias activas que posee el programa como estructuras \textit{RValue}, y marca cada una usando uno de los indicadores internos de flag denominado \textit{FL\_MARK} (\textit{Figura 3}).
-\bigskip
+\bigskip\bigskip
 
 \begin{figure}[h]
 	\centering
@@ -736,45 +765,6 @@ El \refcode{code:multithreading_04} muestra un ejemplo de threads en donde se ut
 
 
 
-% EL INTERPRETE DE RUBY
-\section{El interprete de Ruby}
-
-Como lo enunciamos en el comienzo del informe, Ruby es un lenguaje de scripts interpretado para una programación orientada a objetos rápida y sencilla. En esos principios (ver sección 4) son en los que se centro Matz en su rol de diseñador de lenguaje de programación Ruby. Matz implemento el primer interprete de ruby sin preocuparse demasiado por los problemas de performance y priorizando los principios de diseño de lenguaje de Ruby. A medida que el lenguaje se fue populrizando se tomo más en serio el problema de performance general debido al interprete.
-
-
-%% MRI: El primer interprete
-\subsection{MRI: El primer intérprete}
-
-La crítica más habitual de Ruby es el pobre rendimiento del intérprete frente a otros lenguajes rivales. Las cifras indican que por lo general para un mismo algoritmo el intérprete de Ruby ofrece un menor rendimiento que Python, PHP, Perl ... pudiendo poner en la lista cualquiera de los lenguajes más populares.
-
- El intérprete de Ruby escrito por Matz, conocido como MRI (de Matz Reference Implementation, o Implementación de Referencia de Matz) adolece de no pocos problemas (hay quien afirma que un lenguaje como C no es buena elección a la hora de implementar lenguajes dinámicos)
-
-En todo caso, la comunidad de Rubistas (con Matz a la cabeza) hace tiempo que ha asumido el problema de rendimiento en la MRI y han surgido no pocos proyectos para corregir esta deficiencia. Uno de los problemas con los que se enfrentan los valientes que desean implementar un lenguaje es que el lenguaje Ruby no dispone de una especificación funcional. Por tanto, la única fuente fiable de documentación sobre los entresijos del lenguaje Ruby es el estudio del código fuente en C del intérprete escrito por Matz (de ahí el nombre MRI)
-\bigskip
-
-
-
-%% YARV (o KRI)
-\subsection{YARV (o KRI)}
-
-YARV (yeat another ruby interprete) de Sasada Koich es  la reimplementación de Ruby usando su propia máquina virtual y un compilador a código de bytes. El trabajo de Sasada Koichi, basado en un enfoque más moderno que la implementación de Matz, es tan brillante que forma parte de las versiones oficiales 1.9.x de Ruby. Aún hay algún trabajo por hacer con el problema de performance de Ruby pero cabe destacar que, por lo general, una aplicación Rails verá mejoras de rendimiento del 15% sólo por usar YARV.
-
-YARV divide el problema de la implementación del lenguaje en dos etapas: un compilador de código de bytes y una máquina virtual que ejecuta dicho bytecode. Surge de manera natural la pregunta de si no sería posible usar alguna máquina virtual ya existente y generar bytecode compatible con ella. Si hablamos de máquinas virtuales, la de Java está más que probada.
-\bigskip
-
-
-
-%% OTROS INTERPRETES PARA RUBY
-\subsection{Otros intérpretes para ruby}
-
-JRuby consiste en escribir un intérprete Ruby escrito en Java. Una de las ventajas de ejecutar Ruby en una máquina virtual de Java, por supuesto, es tener acceso a código ya existente escrito en Java lo cual hace a JRuby la implementación ideal para integrar Rails en entornos enterprise. Otra ventaja es que JRuby por definición se verá beneficiado de las mejoras posteriores que se realicen en el intérprete Java. JRuby es un intérprete de Ruby escrito en Java, XRuby es un traductor de Ruby a bytecode de Java (o lo que es lo mismo, de un fichero .rb generará un .class) Este traductor está basado en ANTLR. XRuby ya es capaz de generar bytecode Java para toda la librería estándar de Ruby y para Ruby on Rails 1.2.x
-
-Rubinius es otro interprete cuyo enfoque consiste en escribir la mayor parte del lenguaje en Ruby y dejar que la máquina virtual -escrita en C- ejecute el menor subconjunto posible de funcionalidad. En concreto, Rubinius pone el énfasis en el recolector de memoria y la implementación de forks y threads. A destacar que Rubinius parece surgir del mundo Rails (Evan Phoenix trabaja en Engine Yard, proveedores de alojamiento avanzado Rails) por tanto buena parte de las mejoras que promete en el intérprete atacan a los problemas de rendimiento que más pueden aquejar a nuestras aplicaciones Rails.
-\bigskip
-
-
-
-
 % RUBY ON RAILS: UN PUNTO FUERTE DEL LENGUAJE
 \section{\textit{Ruby On Rails}: un punto fuerte del lenguaje}
 
@@ -790,11 +780,52 @@ Rubinius es otro interprete cuyo enfoque consiste en escribir la mayor parte del
 
 
 
+% EL INTERPRETE DE RUBY
+\section{El interprete de Ruby}
+
+Como lo enunciamos en el comienzo del informe, Ruby es un lenguaje de scripts interpretado para una programación orientada a objetos rápida y sencilla. En esos principios (véase \textit{Sección 4}) son en los que se centró\newpage Matz en su rol de diseñador del lenguaje de programación Ruby. Matz implementó el primer intérprete de Ruby sin preocuparse demasiado por los problemas de performance y priorizando los principios de diseño de lenguaje. A medida que este se fue populrizando se tomó más en serio el problema de desempeño general debido al intérprete.
+\bigskip
+
+
+
+%% MRI: El primer interprete
+\subsection{MRI: El primer intérprete}
+
+	La crítica más habitual de Ruby es el pobre rendimiento del intérprete frente a otros lenguajes rivales. Las cifras indican que por lo general para un mismo algoritmo el intérprete de Ruby ofrece un menor rendimiento que Python, PHP, Perl ... pudiendo poner en la lista cualquiera de los lenguajes más populares.
+	\par
+	El intérprete de Ruby escrito por Matz, conocido como MRI (\textit{Matz's Ruby Interpreter}) adolece de no pocos problemas (hay quienes afirman que un lenguaje como \textit{C} no es buena elección a la hora de implementar lenguajes dinámicos)
+	\par
+	En todo caso, la comunidad de Rubistas (con Matz a la cabeza) hace tiempo que ha asumido el problema de rendimiento en la MRI y han surgido numerosos proyectos para corregir esta deficiencia. Uno de los problemas con los que se enfrentan los valientes que desean implementar un lenguaje es que el lenguaje Ruby no dispone de una especificación funcional. Por tanto, la única fuente fiable de documentación sobre los entresijos del lenguaje Ruby es el estudio del código fuente en \textit{C} del intérprete, escrito por Matz.
+\bigskip
+
+
+
+%% YARV (o KRI)
+\subsection{YARV (o KRI)}
+
+	YARV (\textit{Yeat Another Ruby Interprete}) de Sasada Koich es  la reimplementación de Ruby usando su propia máquina virtual y un compilador a código de bytes. El trabajo de Sasada Koichi, basado en un enfoque más moderno que la implementación de Matz, es tan brillante que forma parte de las versiones oficiales 1.9.x de Ruby. Aún hay algún trabajo por hacer con el problema de performance de Ruby pero cabe destacar que, por lo general, una aplicación utilizando el framework \textit{Ruby on Rails} verá mejoras de rendimiento del 15\% sólo por usar YARV.
+	\par
+	YARV divide el problema de la implementación del lenguaje en dos etapas: un compilador de código de bytes y una máquina virtual que ejecuta dicho bytecode. Surge de manera natural la pregunta de si no sería posible usar alguna máquina virtual ya existente y generar bytecode compatible con ella. Si hablamos de máquinas virtuales, la de Java está más que probada.
+\bigskip
+
+
+
+%% OTROS INTERPRETES PARA RUBY
+\subsection{Otros intérpretes para ruby}
+
+	\textit{JRuby} consiste en un intérprete Ruby escrito en Java. Una de las ventajas de ejecutar Ruby en una máquina virtual de Java, por supuesto, es tener acceso a código ya existente escrito en Java lo cual hace a JRuby la implementación ideal para integrar Rails en entornos enterprise. Otra ventaja es que JRuby por definición se verá beneficiado de las mejoras posteriores que se realicen en el intérprete Java. JRuby es un intérprete de Ruby escrito en Java, XRuby es un traductor de Ruby a bytecode de Java (o lo que es lo mismo, de un fichero .rb generará un .class). Este traductor está basado en ANTLR. XRuby ya es capaz de generar bytecode Java para toda la librería estándar de Ruby y para Ruby on Rails 1.2.x.
+	\par
+	\textit{Rubinius} es otro intérprete cuyo enfoque consiste en escribir la mayor parte del programa en Ruby y dejar que la máquina virtual, escrita en C, ejecute el menor subconjunto posible de funcionalidades. En concreto, Rubinius pone el énfasis en el recolector de basura y la implementación de forks y threads. Cabe destacar que Rubinius parece surgir del mundo Rails (Evan Phoenix trabaja en Engine Yard, proveedores de alojamiento avanzado Rails), por tanto, buena parte de las mejoras que promete en el intérprete atacan a los problemas de rendimiento que más pueden aquejar a nuestras aplicaciones desarrolladas con Rails.
+\bigskip
+
+
+
+
 % APLICACIONES
 \section{Aplicaciones}
 
 Con el paso del tiempo Ruby fue siendo utilizado por un número cada vez mayor de desarrolladores para llevar a cabo proyectos de grande envergadura. A continuación se muestra un listado de aplicaciones\footnote{''Véase una lista mas completa de aplicaciones en los siguientes vínculos: http://rubyonrails.org/applications\\http://www.ruby-lang.org/en/documentation/success-stories''} realizadas en este lenguaje:
-\bigskip\\
+\bigskip\bigskip\bigskip
 
 \textbf{Web:}
 \begin{itemize}
@@ -834,7 +865,7 @@ Con el paso del tiempo Ruby fue siendo utilizado por un número cada vez mayor d
 
 
 % UN EJEMPLO PRACTICO DE APLICACIÓN
-\section{Un ejemplo práctico de aplicacion}
+\section{Ejemplo práctico de aplicacion}
 
 \bigskip
 
@@ -844,7 +875,7 @@ Con el paso del tiempo Ruby fue siendo utilizado por un número cada vez mayor d
 % CONCLUSIÓN
 \section{Conclusión}
 
-	Claramente Ruby es el camino correcto a tomar si se desea realizar desarrollos a corto plazo. Más aún, es una buena opción a la hora de emprender proyectos apuntados a la web, a pesar de no ofrecer una apreciable eficiencia comparado con otros lenguajes de programación que son útiles para el mismo propósito.
+	Claramente Ruby es el camino correcto a tomar si se desea realizar desarrollos a corto plazo. Más aún, es una buena opción a la hora de emprender proyectos apuntados a la web, a pesar de no ofrecer una apreciable eficiencia comparado con otros lenguajes de programación que son útiles para el mismo propósito. Es por esta última razón que no creemos conveniente el uso de este lenguaje en aplicaciones que esten destinadas al manejo de grandes extensiones de información y datos.
 	\par
 	El lenguaje ha sido ampliamente aceptado por la comunidad de desarrolladores de software, lo cual es avalado por una continua actividad en las listas de desarrolladores de Ruby. Es evidente que la forma en que el creador, Matz, ha diseñado el lenguaje ha cautivado a gran parte de la comunidad.
 	\par
