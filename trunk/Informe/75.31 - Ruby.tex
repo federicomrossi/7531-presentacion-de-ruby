@@ -407,6 +407,8 @@ A continuación, en el código \refcode{code:sintaxis_arrays_01}, se muestran ej
 \lstinputlisting[label=code:sintaxis_arrays_01,caption=``Arrays'']{codes/sintaxis_arrays_01.rb} 
 \bigskip
 
+En las líneas 5 y 6 se ve el uso de algunos de los operadores que tiene sobre cargado los objetos Array.  El operador de indexación se utiliza para obtener elementos, si se ingresa un número negativo comienza a contar desde el final hacia el comienzo como se ve en la línea 7, si se ingresan varios índices se obtiene el array con los valores que se indican como se ve en la línea 14 y 15, también se pueden utilizar rangos para obtener un array que contenga los elementos indicados en el rango. El objeto array posee varios métodos como son el map que aplica una operación sobre cada elemento del array como se ve en la línea 13. En la línea 14 se observa algo interesante el array compone un objeto drop, el cual tiene un método que se llama while que recibe un bloque en el cual se debe especificar cual es la condición para eliminar los elementos de toda la colección.
+
 \subsubsection{Colecciones: \textit{Hash}}
 Conocidos también como diccionarios (aunque en el mundo ruby se prefiere el nombre hash), representan las Hash Table que son una colección indexada de datos accedidos por una clave. Son una implementación de búsqueda muy eficiente y son extensivamente utilizados en la construcción del lenguaje Ruby. A continuación se exponen ejemplos de uso de los mismos.
 
@@ -414,7 +416,7 @@ Conocidos también como diccionarios (aunque en el mundo ruby se prefiere el nom
 \lstinputlisting[label=code:sintaxis_hash_01,caption=``Hash"]{codes/sintaxis_hash_01.rb} 
 \bigskip
 
-
+En la línea 1 se muestra como se puede inicializar un hash el cual puede tener valores y claves de cualquier tipo de objeto. La línea 9 muestra un ejemplo interesante, el  objeto hash posee un objeto llamado delete que tiene el método if el cual determina si borra una tupla pudiendo evaluar la clave y/o el valor de cada elemento del hash.
 
 %% SYMBOLS
 \subsection{Symbols}
@@ -489,12 +491,16 @@ Las variables pueden tener alcance global, local (dadas por cualquier bloque: bl
 
 Cuando un método es llamado en Ruby, técnicamente no se esta “llamando” a un método. Lo que se esta haciendo es enviando un mensaje a un objeto, como diciendo: “Hey, vos tenés este método?” si lo tiene entonces se ejecuta, si no lo tiene se lanza una exception “NoMethodError”. Esto, como se puede notar, proviene del paradigma de POO.
 Los métodos siempre devuelven un valor, el que corresponde a la última sentencia que ejecuta. 
-
+En la línea 7 del \refcode{code:sintaxis_metodos_01} se muestra que se pueden asignar parámetros por defecto.
 % Código
 \lstinputlisting[label=code:sintaxis_metodos_01,caption="Declaración métodos"]{codes/sintaxis_metodos_01.txt} 
 
+En el \refcode{code:sintaxis_metodos_02} se puede ver que l os métodos se pueden invocar sin utilizar paréntesis como se ve en la línea 8, la lista de parámetros de un método puede ser variable como se ve en la línea 2.
 % Código
 \lstinputlisting[label=code:sintaxis_metodos_02,caption="Parámetros"]{codes/sintaxis_metodos_02.txt} 
+
+El \refcode{code:sintaxis_metodos_03} muestra un ejemplo de programación de alto orden con metodos y la capacidad reflexiva de Ruby. En la línea 20 se utiliza el método self que es un puntero a la instancia (en este caso Object), método que se invoca se llama method el cual recibe como parámetro un Symbol que representa el método del objeto que se desea obtener (ruby mantiene un hash de Symbol de todos los atributos que posee la clase). Como lo que se obtiene es un método y este no se puede invocar aisladamente fuera del objeto, se debe convertirlo a un procedimiento, por eso se utiliza el método to\_proc para poder utilizarlo como se ve en las líneas 9 mediante el método call.
+
 
 % Código
 \lstinputlisting[label=code:sintaxis_metodos_03,caption=``Alto orden utilizando métodos'']{codes/sintaxis_metodos_03.txt} 
@@ -572,6 +578,8 @@ Las exceptions se representan en una jerarquia de objetos que heredan de Standar
 %% ESTRUCTURAS DE CONTROL
 \subsection{Estructuras de control}
 
+Las estructuras de control presentes en Ruby son las típicas que encontramos en la mayoría de los lenguajes de programación el case, el while y el for. En la línea 4 se ven las distintas formas de establecer las condiciones del case (se pueden utilizar rangos, y varios elementos separados por coma). En la línea 23 se denota como se puede utilizar el while al final de una línea (como el if), de esta manera el código es más entendible “por los humanos” ya que por ejemplo esta expresando: “auméntame y muéstrame el contador i mientras sea menor que tres”. También las líneas 30, 38 y 43 muestran cómo hay un for para cada estilo conocido.
+
 % Código
 \lstinputlisting[label=code:sintaxis_estructuracontrol_01,caption=``Estructuras de control'']{codes/sintaxis_estructuracontrol_01.rb}
 \bigskip
@@ -630,11 +638,12 @@ Un thread puede acceder a cualquier variable que se encuentre en el alcance dond
 \subsection{Semáforos}
 
 Para controlar el acceso a los recursos compartidos por varios thread (exclusión mutua), ruby implementa en el core los semaforos en la clase Mutex. En las imagenes siguientes se ven la sintaxis y posteriormente un ejemplo de uso.
-
+El \refcode{code:multithreading_03} muestra los distintos tipos de sintaxis que se pueden utilizar para utilizar semafóros en Ruby. En la línea 2 se crea un objeto semáforo que tiene alcance dentro de los threads a y b creados en las líneas 5 y 11. Siempre que se identifique un bloque conflictivo, es decir donde se acceda a recursos compartidos por los thread se puede emplear la sintaxis de la línea 5 y 11 o la sintaxis de la línea  16 y 20.
 % Código
 \lstinputlisting[label=code:multithreading_03,caption=``Uso de mutex'']{codes/multithreading_03.txt} 
 \bigskip
 
+El \refcode{code:multithreading_04} muestra un ejemplo de threads en donde se utiliza un semáforo: existen dos contadores que un thread debe incrementar (el thread counter creado en la línea 4). Ahora esos contadores se deben incrementar al mismo tiempo, de modo tal que la diferencia de siempre cero. Esta diferencia la calcula el thread spy que se crea en la línea 14. Si no se usara un mutex como se usa en las líneas 8 y 16 podría ser que la diferencia no de 0, que es objetivo del programa mostrado. 
 % Código
 \lstinputlisting[label=code:multithreading_04,caption=``Ejemplo utilizando mutex'']{codes/multithreading_04.rb} 
 \bigskip
