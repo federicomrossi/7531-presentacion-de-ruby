@@ -867,10 +867,62 @@ Con el paso del tiempo Ruby fue siendo utilizado por un número cada vez mayor d
 % UN EJEMPLO PRACTICO DE APLICACIÓN
 \section{Ejemplo práctico de aplicacion}
 
+
+A continuación vamos a mostrar un ejemplo de aplicación. Este programa que presentaremos tiene como objetivo mostrar la sintaxis agradable y practicidad que posee Ruby, aplicada a un problema a resolver que si bien no es muy complejo resulta muy atractivo de implementar puesto que vamos a modelar un componente inicial de un juego. Primero mostramos la descripción del problema y el diseño solución propuesto, luego mostramos la implementación que desarrollamos en Ruby.
+
+%% PLANTEO DEL PROBLEMA Y DISEÑO SOLUCIÓN
+\subsection{Planteo del problema y diseño solución}
+
+\par
+El dominio del problema solo se limita a el fantasma del juego pacman, cuya interfaz propuesta a implementrar mostramos en la  \textit{Figura 5}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.45\textwidth]{images/ejemplo/Interfaz.jpg}
+	\caption{Interfaz a implementar}
+\end{figure}
+
+\par
+Las responsabilidades que vemos esta interfaz son la de mostrarse (se muestra el estado interno del objeto por pantalla), molestarse (incrementa la agresividad), convertirse en presa (puede ser comido), ser comido (solo puede ser comido si es presa).
+Parte del dominio del problema es controlar el comportamiento del fantasma que depende en principio del estado interno de los objeto. Los tres estados del mismo y las transiciones se muestran en el diagrama de estados de la  \textit{figura 6}. Debemos tener en cuenta las reglas de que el fatasma si esta muerto no puede hacer nada y si es cazador no puede ser comido. Asi tambien que se espera que el fantasma sea presa por un intervalo de 10 segundos y permanesca muerto por un intervalo de 5 segundos.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.45\textwidth]{images/ejemplo/Estados.jpg}
+	\caption{Diagrama de estados}
+\end{figure}
+
+
+Como el comportamiento del fantasma depende del estado interno del mismo, es decir que el comportamiento varia según el estado del fantasma, encapsulamos el comportamiento en una clase por cada estado. Siguiendo el principio de diseño que dice “encapsular lo que varía” e identificando que el comportamiento varía según el estado, hemos aplicado el patrón de diseño conocido, el State, para resolver el problema propuesto figura 7.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.53\textwidth]{images/ejemplo/Diseno.jpg}
+	\caption{Diseño propuesto a implementar}
+\end{figure}
+
+\par
+También decidimos que la responsabilidad de cambiar el estado del fantasma es de cada estado. En particular, los estados Presa y Muerto son los responsables de volver al estado cazador a los 10 segundos y 5 segundos respectivamente. Para esto hemos implemenetado un thread en cada uno de estos estados que se encarga de realizar esa acción al pasar el tiempo descripto anteriormente. 
+
+\medskip
 \bigskip
 
+%% IMPLEMENTACIÓN EN RUBY
+\subsection{Implementación en Ruby}
 
+	El \refcode{code:pacman} muestra la implementación completa del problema planteado. En el código encontrara la sintaxis de clases, herencia, threads y semafóros para el problema planteado.
 
+% Código
+\lstinputlisting[label=code:pacman,caption=``Implementación del fantasma del juego pacman'']{codes/pacman.rb} 
+\bigskip\bigskip
+
+%% INSTALACIÓN DEL PROGRAMA
+\subsection{Instalación del programa}
+Invitamos al lector a descargar el interprete de Ruby en http://www.ruby-lang.org/es/downloads/
+Luego puede crear un archivo con extensión .rb que tenga como contenido el código expuesto en el punto anterior y ejecutar la aplicación abriendo una terminal con la instrucción: ruby pathArchivo, donde pathArchivo es el path donde se encuentra el archivo .rb 
+
+Al ejecutar el programa podra interactucar con el mismo ingresando: molestar, presa, comer y mover.
+Para terminar de utilizar la aplicación debe ingresar: salir.
 
 % CONCLUSIÓN
 \section{Conclusión}
