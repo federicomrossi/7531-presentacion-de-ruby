@@ -25,6 +25,9 @@
 \usepackage{amssymb}
 \usepackage{float}
 \usepackage{graphicx}
+\usepackage{tocloft} % Table of contents
+
+
 
 %% Fin PAQUETES
 
@@ -92,19 +95,31 @@
 \newcommand{\refcode}[1]{\textit{Código \ref{#1}}}
 %% Referencia a las imagenes
 \newcommand{\refimage}[1]{\textit{Imagen \ref{#1}}}
-
+%% Tabla de contenidos
+\renewcommand{\cfttoctitlefont}{\Huge\textbf\bigskip\bigskip\textbf}
+%\renewcommand\cftfigfont{\tiny}
+%\renewcommand\cftfigpagefont{\Large}
 
 \begin{document}
 
-% Inserción del título, autores y fecha.
-\title{\huge 75.31 Teoría de Lenguage \\ 
-	  \Huge El lenguaje de programación Ruby \\
-	  \bigskip \Large 28 de mayo de 2012 \\
-	  \bigskip\bigskip \large\textit{Diaz, Federico (83568)\\Rossi, Federico Martín (92086)}}
-\date{}
-\maketitle
+% TÍTULO, AUTORES Y FECHA
+\begin{titlepage}
+	\vspace*{\fill}
+	\begin{center}
+		\huge 75.31 Teoría de Lenguage \\ 
+		\Huge El lenguaje de programación Ruby \\
+		\bigskip \Large 6 de julio de 2012 \\
+		\bigskip\bigskip \large\textit{Diaz, Federico (83568)\\Rossi, Federico Martín (92086)}
+		\date{}
+	\end{center}
+	\vspace*{\fill}
+\end{titlepage}
+\newpage
 
 
+% ÍNDICE
+\tableofcontents
+\newpage
 
 
 % INTRODUCCIÓN
@@ -201,8 +216,8 @@ Sin duda, Ruby fue diseñado para hacer a los programadores mas productivos y fe
 
 \begin{flushright} Yukihiro Matsumoto (a.k.a. “Matz”), 2000 \end{flushright}
 \end{quotation}
+\bigskip
 
-\newpage
 ¿Cuáles son los principios de una buena interfaz de usuario? Estos son los tres principios con citas de apoyo por parte de Matz:\\
 
 \begin{quotation}
@@ -509,6 +524,7 @@ Para obtener una combinacion de ambos, es decir darle a un atributo los dos modi
 	Cuando un método es llamado en Ruby, técnicamente no se esta “llamando” a un método. Lo que se esta haciendo es enviando un mensaje a un objeto, como diciendo: “Hey, vos tenés este método?” si lo tiene entonces se ejecuta, si no lo tiene se lanza una excepción \textit{“NoMethodError”}. Esto, como se puede notar, proviene del paradigma de POO.
 	\par
 	Los métodos siempre devuelven un valor, el que corresponde a la última sentencia que ejecuta. En la línea 7 del \refcode{code:sintaxis_metodos_01} se muestra que se pueden asignar parámetros por defecto.
+\bigskip
 
 % Código
 \lstinputlisting[label=code:sintaxis_metodos_01,caption="Declaración métodos"]{codes/sintaxis_metodos_01.txt}
@@ -556,7 +572,7 @@ En el \refcode{code:sintaxis_bloques&proc_01} se ven las dos sintaxis posibles d
 
 Un objeto procedimiento nuevo se obtiene utilizando la palabra reservada \textit{Proc}. Se pueden utilizar procedimientos anónimos. Estos objetos preservan el contexto en el cual fueron creados.
 En el \refcode{code:sintaxis_bloques&proc_02} se ven dos alternativas para asignar un handler a la señal de interrupción “SIGINT”. En la línea 2 se crea el procedimiento que es el handler y que luego se asigna utilizando la llamada a sistema que provee Ruby a través del método \textit{trap} (línea 3). En la línea 5 se ve una alternativa a la sentencia de la línea 3 que utiliza un bloque con un parámetro para crear un procedimiento que realiza esa sentencia. 
-\bigskip
+\bigskip\bigskip
 
 % Código
 \lstinputlisting[label=code:sintaxis_bloques&proc_02,caption=``Ejemplo de uso de procedimientos'']{codes/sintaxis_bloques&proc_02.txt}
@@ -737,13 +753,15 @@ Los nombres de métodos que finalizan con un signo de interrogación (?, pronunc
 	
 	Lo hasta aquí expuesto es solo la mitad de lo que realiza el algoritmo del recolector de basura por marcado y barrido de Ruby. Algo a tener en cuenta es que las estructuras marcadas son usadas activamente por el programa y no pueden ser liberadas o reutilizadas.
 	\par
-	Una vez que todas las estructuras en el sistema están marcadas, las estructuras restantes son barridas hacia una lista simplemente enlazada usando el puntero \textit{Next} de cada estructura \textit{RValue}. En el diagrama de la \textit{Figura 4} se representa el flag de \textit{FL\_MARK} en el arreglo heap con la letra ``M'', y por debajo se puede muestra la lista de los \textit{RValue} sin marcar, denominada la \textit{lista libre}. 
+	Una vez que todas las estructuras en el sistema están marcadas, las estructuras restantes son barridas hacia una lista simplemente enlazada usando el puntero \textit{Next} de cada estructura \textit{RValue}. En el diagrama de la \textit{Figura 4} se representa el flag de \textit{FL\_MARK} en el arreglo heap con la letra ``M'', y por debajo se puede muestra la lista de los \textit{RValue} sin marcar, denominada la \textit{lista libre}.
+\bigskip 
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1\textwidth]{images/gc/gc04-free-list.png}
 	\caption{Marcado de un RValue con el indicador FL\_MARK.}
 \end{figure}
+\bigskip
 	
 	Como se ha de imaginar el lector, la lista libre puede ahora ser usada para proveer nuevas estructuras \textit{RValue} al programa, ya que este último nunca se detiene. Ahora, cada vez que el programa hecho en Ruby asigna un nuevo objeto o valor, este usa una estructura \textit{RValue} de la lista libre al mismo tiempo que es removida de dicha lista. Eventualmente, la lista libre se comenzará a vaciar nuevamente y Ruby deberá ejecutar nuevamente el recolector de basura.
 	\par
@@ -781,9 +799,9 @@ Los nombres de métodos que finalizan con un signo de interrogación (?, pronunc
 
 
 % EL INTERPRETE DE RUBY
-\section{El interprete de Ruby}
+\section{El intérprete de Ruby}
 
-Como lo enunciamos en el comienzo del informe, Ruby es un lenguaje de scripts interpretado para una programación orientada a objetos rápida y sencilla. En esos principios (véase \textit{Sección 4}) son en los que se centró\newpage Matz en su rol de diseñador del lenguaje de programación Ruby. Matz implementó el primer intérprete de Ruby sin preocuparse demasiado por los problemas de performance y priorizando los principios de diseño de lenguaje. A medida que este se fue populrizando se tomó más en serio el problema de desempeño general debido al intérprete.
+	Como lo enunciamos en el comienzo del informe, Ruby es un lenguaje de scripts interpretado para una programación orientada a objetos rápida y sencilla. En esos principios (véase \textit{Sección 4}) son en los que se centró Matz en su rol de diseñador del lenguaje de programación Ruby. Matz implementó el primer intérprete de Ruby sin preocuparse demasiado por los problemas de performance y priorizando los principios de diseño de lenguaje. A medida que este se fue populrizando se tomó más en serio el problema de desempeño general debido al intérprete.
 \bigskip
 
 
@@ -824,8 +842,8 @@ Como lo enunciamos en el comienzo del informe, Ruby es un lenguaje de scripts in
 % APLICACIONES
 \section{Aplicaciones}
 
-Con el paso del tiempo Ruby fue siendo utilizado por un número cada vez mayor de desarrolladores para llevar a cabo proyectos de grande envergadura. A continuación se muestra un listado de aplicaciones\footnote{''Véase una lista mas completa de aplicaciones en los siguientes vínculos: http://rubyonrails.org/applications\\http://www.ruby-lang.org/en/documentation/success-stories''} realizadas en este lenguaje:
-\bigskip\bigskip\bigskip
+	Con el paso del tiempo Ruby fue siendo utilizado por un número cada vez mayor de desarrolladores para llevar a cabo proyectos de grande envergadura. A continuación se muestra un listado de aplicaciones\footnote{''Véase una lista mas completa de aplicaciones en los siguientes vínculos: http://rubyonrails.org/applications\\http://www.ruby-lang.org/en/documentation/success-stories''} realizadas en este lenguaje:
+\bigskip\bigskip
 
 \textbf{Web:}
 \begin{itemize}
@@ -865,64 +883,74 @@ Con el paso del tiempo Ruby fue siendo utilizado por un número cada vez mayor d
 
 
 % UN EJEMPLO PRACTICO DE APLICACIÓN
-\section{Ejemplo práctico de aplicacion}
+\section{Ejemplo práctico de aplicación}
+
+	A continuación vamos a mostrar un ejemplo de aplicación. Este programa que presentaremos tiene como objetivo mostrar la sintaxis agradable y practicidad que posee Ruby, aplicada a un problema a resolver que si bien no es muy complejo resulta muy atractivo de implementar puesto que vamos a modelar un componente inicial de un juego. Primero mostramos la descripción del problema y el diseño de la solución propuesta, luego mostramos la implementación que desarrollamos en Ruby.
+\bigskip
 
 
-A continuación vamos a mostrar un ejemplo de aplicación. Este programa que presentaremos tiene como objetivo mostrar la sintaxis agradable y practicidad que posee Ruby, aplicada a un problema a resolver que si bien no es muy complejo resulta muy atractivo de implementar puesto que vamos a modelar un componente inicial de un juego. Primero mostramos la descripción del problema y el diseño solución propuesto, luego mostramos la implementación que desarrollamos en Ruby.
 
 %% PLANTEO DEL PROBLEMA Y DISEÑO SOLUCIÓN
-\subsection{Planteo del problema y diseño solución}
+\subsection{Planteo del problema y diseño de la solución}
 
 \par
-El dominio del problema solo se limita a el fantasma del juego pacman, cuya interfaz propuesta a implementrar mostramos en la  \textit{Figura 5}.
+El dominio del problema solo se limita al fantasma del juego Pacman, cuya interfaz propuesta a implementrar mostramos en la  \textit{Figura 5}.
+\bigskip
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.45\textwidth]{images/ejemplo/Interfaz.jpg}
-	\caption{Interfaz a implementar}
+	\includegraphics[width=0.275\textwidth]{images/ejemplo/Interfaz.jpg}
+	\caption{Interfaz a implementar.}
 \end{figure}
+\bigskip
 
-\par
-Las responsabilidades que vemos esta interfaz son la de mostrarse (se muestra el estado interno del objeto por pantalla), molestarse (incrementa la agresividad), convertirse en presa (puede ser comido), ser comido (solo puede ser comido si es presa).
-Parte del dominio del problema es controlar el comportamiento del fantasma que depende en principio del estado interno de los objeto. Los tres estados del mismo y las transiciones se muestran en el diagrama de estados de la  \textit{figura 6}. Debemos tener en cuenta las reglas de que el fatasma si esta muerto no puede hacer nada y si es cazador no puede ser comido. Asi tambien que se espera que el fantasma sea presa por un intervalo de 10 segundos y permanesca muerto por un intervalo de 5 segundos.
+	Las responsabilidades que vemos en esta interfaz son las de mostrarse (se muestra el estado interno del objeto por pantalla), molestarse (incrementa la agresividad), convertirse en presa (puede ser comido), ser comido (solo puede ser comido si es presa).
+Parte del dominio del problema es controlar el comportamiento del fantasma que depende en principio del estado interno de los objetos. Los tres estados del mismo y las transiciones se muestran en el diagrama de estados de la  \textit{Figura 6}. Debemos tener en cuenta las reglas de que el fatasma, si esta muerto, no puede hacer nada y si es cazador no puede ser comido. Asi también, se espera que el fantasma sea presa por un intervalo de 10 segundos y permanezca muerto por un intervalo de 5 segundos.
+\bigskip
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.45\textwidth]{images/ejemplo/Estados.jpg}
-	\caption{Diagrama de estados}
+	\caption{Diagrama de estados.}
 \end{figure}
-
-
-Como el comportamiento del fantasma depende del estado interno del mismo, es decir que el comportamiento varia según el estado del fantasma, encapsulamos el comportamiento en una clase por cada estado. Siguiendo el principio de diseño que dice “encapsular lo que varía” e identificando que el comportamiento varía según el estado, hemos aplicado el patrón de diseño conocido, el State, para resolver el problema propuesto figura 7.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.53\textwidth]{images/ejemplo/Diseno.jpg}
-	\caption{Diseño propuesto a implementar}
-\end{figure}
-
-\par
-También decidimos que la responsabilidad de cambiar el estado del fantasma es de cada estado. En particular, los estados Presa y Muerto son los responsables de volver al estado cazador a los 10 segundos y 5 segundos respectivamente. Para esto hemos implemenetado un thread en cada uno de estos estados que se encarga de realizar esa acción al pasar el tiempo descripto anteriormente. 
-
-\medskip
 \bigskip
+
+	Como el comportamiento del fantasma depende del estado interno del mismo, es decir, el comportamiento varía según el estado del fantasma, encapsulamos el comportamiento en una clase por cada estado. Siguiendo el principio de diseño que dice ``encapsular lo que varía'' e identificando que el comportamiento varía según el estado, hemos aplicado el patrón de diseño conocido, State, para resolver el problema propuesto en la \textit{Figura 7}.
+	\par
+	También decidimos que la responsabilidad de cambiar el estado del fantasma es de cada estado. En particular, los estados Presa y Muerto son los responsables de volver al estado cazador a los 10 segundos y 5 segundos respectivamente. Para esto hemos implemenetado un thread en cada uno de estos estados que se encarga de realizar esa acción al pasar el tiempo descripto anteriormente. 
+
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.60\textwidth]{images/ejemplo/Diseno.jpg}
+	\caption{Diseño propuesto a implementar.}
+	\bigskip
+	\bigskip
+\end{figure}
+
+
 
 %% IMPLEMENTACIÓN EN RUBY
 \subsection{Implementación en Ruby}
 
-	El \refcode{code:pacman} muestra la implementación completa del problema planteado. En el código encontrara la sintaxis de clases, herencia, threads y semafóros para el problema planteado.
+	El \refcode{code:pacman} muestra la implementación completa del problema planteado. En el código encontrará la sintaxis de clases, herencia, threads y semafóros para el problema planteado.
 
 % Código
 \lstinputlisting[label=code:pacman,caption=``Implementación del fantasma del juego pacman'']{codes/pacman.rb} 
 \bigskip\bigskip
 
-%% INSTALACIÓN DEL PROGRAMA
-\subsection{Instalación del programa}
-Invitamos al lector a descargar el interprete de Ruby en http://www.ruby-lang.org/es/downloads/
-Luego puede crear un archivo con extensión .rb que tenga como contenido el código expuesto en el punto anterior y ejecutar la aplicación abriendo una terminal con la instrucción: ruby pathArchivo, donde pathArchivo es el path donde se encuentra el archivo .rb 
 
-Al ejecutar el programa podra interactucar con el mismo ingresando: molestar, presa, comer y mover.
-Para terminar de utilizar la aplicación debe ingresar: salir.
+
+%% INSTALACIÓN DEL PROGRAMA
+\subsection{Ejecución del programa}
+
+	Invitamos al lector a descargar el intérprete de Ruby en \textit{http://www.ruby-lang.org/es/downloads/}. Luego puede crear un archivo con extensión \textit{.rb} que tenga como contenido el código expuesto en el apartado anterior y ejecutar la aplicación abriendo una terminal con la instrucción ``\textit{ruby PATH\_ARCHIVO}'', donde \textit{PATH\_ARCHIVO} es el directiorio en donde se encuentra el archivo de extensión \textit{.rb}.
+	 \par
+	Al ejecutar el programa podrá interactuar con el mismo ingresando \textit{molestar}, \textit{presa}, \textit{comer} y \textit{mover}. Para terminar de utilizar la aplicación debe ingresar el comando \textit{salir}.
+\bigskip
+
+
+
 
 % CONCLUSIÓN
 \section{Conclusión}
